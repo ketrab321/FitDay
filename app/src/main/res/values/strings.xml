@@ -6,4 +6,13 @@
     <string name="nav_header_subtitle">android.studio@android.com</string>
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
+    <string name="action_change_body_parameters">Change body parameters</string>
+    <string name="sex_text_view">Sex</string>
+    <string name="male_button">male</string>
+    <string name="female_button">female</string>
+    <string name="height_text_view">Height</string>
+    <string name="weight_text_view">Weight</string>
+    <string name="age_text_view">Age</string>
+    <string name="confirm_button">Confirm</string>
+
 </resources>

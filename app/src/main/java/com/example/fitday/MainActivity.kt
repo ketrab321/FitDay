@@ -1,5 +1,7 @@
 package com.example.fitday
 
+import android.app.Activity
+import android.content.Intent
 import android.os.Bundle
 import android.support.design.widget.Snackbar
 import android.support.design.widget.NavigationView
@@ -8,9 +10,12 @@ import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar_main.*
 
+const val CHANGE_BODY_PARAMETERS_REQUEST_CODE = 1212
+var PPM = 0.0f
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -52,6 +57,11 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         // as you specify a parent activity in AndroidManifest.xml.
         when (item.itemId) {
             R.id.action_settings -> return true
+            R.id.action_change_body_parameters -> {
+                val myintent = Intent(this, BodyParamsForm::class.java )
+                startActivityForResult(myintent, CHANGE_BODY_PARAMETERS_REQUEST_CODE)
+                return true
+            }
             else -> return super.onOptionsItemSelected(item)
         }
     }
@@ -81,5 +91,19 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         drawer_layout.closeDrawer(GravityCompat.START)
         return true
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+
+        if (requestCode == CHANGE_BODY_PARAMETERS_REQUEST_CODE) {
+            if (resultCode == Activity.RESULT_OK) {
+                var resultPPM = data!!.getFloatExtra("PPM",0.0f)
+                PPM = resultPPM
+                Toast.makeText(this,"Return $resultPPM",Toast.LENGTH_SHORT).show()
+            }
+            if (resultCode == Activity.RESULT_CANCELED) {
+                //Write your code if there's no result
+            }
+        }
     }
 }

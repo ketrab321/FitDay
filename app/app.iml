@@ -17,7 +17,7 @@
         <option name="ALLOW_USER_CONFIGURATION" value="false" />
         <option name="MANIFEST_FILE_RELATIVE_PATH" value="/src/main/AndroidManifest.xml" />
         <option name="RES_FOLDER_RELATIVE_PATH" value="/src/main/res" />
-        <option name="RES_FOLDERS_RELATIVE_PATH" value="file://$MODULE_DIR$/src/main/res" />
+        <option name="RES_FOLDERS_RELATIVE_PATH" value="file://$MODULE_DIR$/src/main/res;file://$MODULE_DIR$/build/generated/res/resValues/debug" />
         <option name="TEST_RES_FOLDERS_RELATIVE_PATH" value="" />
         <option name="ASSETS_FOLDER_RELATIVE_PATH" value="/src/main/assets" />
       </configuration>
@@ -27,7 +27,7 @@
         <compilerSettings />
         <compilerArguments>
           <option name="destination" value="$MODULE_DIR$/build/tmp/kotlin-classes/debug" />
-          <option name="classpath" value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-stdlib-jdk7/1.3.20/aa17d6fd473ce53061a7b2b9d2ae96f547cae93d/kotlin-stdlib-jdk7-1.3.20.jar;C:/Users/Bartek Stajnowski/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-stdlib/1.3.20/eb2a232734e09fcd1b958a5c7520a93c6de38b32/kotlin-stdlib-1.3.20.jar;C:/Users/Bartek Stajnowski/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-stdlib-common/1.3.20/7d7934e26ce34da1a0a8d00e38038d7cf3375e89/kotlin-stdlib-common-1.3.20.jar;C:/Users/Bartek Stajnowski/.gradle/caches/modules-2/files-2.1/org.jetbrains/annotations/13.0/919f0dfe192fb4e063e7dacadee7f8bb9a2672a9/annotations-13.0.jar;C:/Users/Bartek Stajnowski/.gradle/caches/transforms-2/files-2.1/2eb27738203b6a0f29b0a8b7436b3863/jars/classes.jar;C:/Users/Bartek Stajnowski/.gradle/caches/transforms-2/files-2.1/6287994280ccb9d1ec2dd0ae39d4ec79/jars/classes.jar;C:/Users/Bartek Stajnowski/.gradle/caches/transforms-2/files-2.1/169af738f0f05f7dee6847e511b1538f/jars/classes.jar;C:/Users/Bartek Stajnowski/.gradle/caches/transforms-2/files-2.1/6307cef004f87295881989fdcd15add5/jars/classes.jar;C:/Users/Bartek Stajnowski/.gradle/caches/transforms-2/files-2.1/773258fe46cbabf73de9e67d11dc5b99/jars/classes.jar;C:/Users/Bartek Stajnowski/.gradle/caches/transforms-2/files-2.1/89f9cea40f67a38065b23df422284dac/jars/classes.jar;C:/Users/Bartek Stajnowski/.gradle/caches/transforms-2/files-2.1/fa87f2da129bdb98f499dae3940a9538/jars/classes.jar;C:/Users/Bartek Stajnowski/.gradle/caches/transforms-2/files-2.1/a50407d6db02cb16a2796474576bdb93/jars/classes.jar;C:/Users/Bartek Stajnowski/.gradle/caches/transforms-2/files-2.1/a7490bafc974d578cee55a8cc26dc531/jars/classes.jar;C:/Users/Bartek Stajnowski/.gradle/caches/transforms-2/files-2.1/aefdbdbb66d768e7bb6643645300aeb5/jars/classes.jar;C:/Users/Bartek Stajnowski/.gradle/caches/transforms-2/files-2.1/57617ca21246001ffeafe974a8762316/jars/classes.jar;C:/Users/Bartek Stajnowski/.gradle/caches/transforms-2/files-2.1/f38d8212a599145cf20d97cf48c9513a/jars/classes.jar;C:/Users/Bartek Stajnowski/.gradle/caches/transforms-2/files-2.1/242d2b8a6311be121887c8b57c7ead45/jars/classes.jar;C:/Users/Bartek Stajnowski/.gradle/caches/transforms-2/files-2.1/c41c0fb93bc025ca391c3ae007394c61/jars/classes.jar;C:/Users/Bartek Stajnowski/.gradle/caches/transforms-2/files-2.1/24bc1cefac86e5ab103575198a485c28/jars/classes.jar;C:/Users/Bartek Stajnowski/.gradle/caches/transforms-2/files-2.1/43edad485430c587eed18c1c3f4a6239/jars/classes.jar;C:/Users/Bartek Stajnowski/.gradle/caches/transforms-2/files-2.1/72beb31666924fe24d8cb41efb0b95f4/jars/classes.jar;C:/Users/Bartek Stajnowski/.gradle/caches/transforms-2/files-2.1/dc0595018991958e7f588c7b4c8dc97e/jars/classes.jar;C:/Users/Bartek Stajnowski/.gradle/caches/transforms-2/files-2.1/2212743d88094c449e2c7a8c06ef02b1/jars/classes.jar;C:/Users/Bartek Stajnowski/.gradle/caches/transforms-2/files-2.1/b894205da38b923b7c5f4fc3540f7060/jars/classes.jar;C:/Users/Bartek Stajnowski/.gradle/caches/transforms-2/files-2.1/1a99287f122af5103daec608ef60d3fa/jars/classes.jar;C:/Users/Bartek Stajnowski/.gradle/caches/transforms-2/files-2.1/7773acc2c68c5c9cbfe29952b550fd90/jars/classes.jar;C:/Users/Bartek Stajnowski/.gradle/caches/modules-2/files-2.1/com.android.support/collections/28.0.0/c1bcdade4d3cc2836130424a3f3e4182c666a745/collections-28.0.0.jar;C:/Users/Bartek Stajnowski/.gradle/caches/transforms-2/files-2.1/527f64c93c58dc65c4ebbb325b792ab0/jars/classes.jar;C:/Users/Bartek Stajnowski/.gradle/caches/transforms-2/files-2.1/1f83294b37142612a35ac7fff7d3c541/jars/classes.jar;C:/Users/Bartek Stajnowski/.gradle/caches/transforms-2/files-2.1/2873ffa40266e3f4a06c93ee7328e89a/jars/classes.jar;C:/Users/Bartek Stajnowski/.gradle/caches/transforms-2/files-2.1/04d0d9b2d2fec50aa25232b6618d1fd0/jars/classes.jar;C:/Users/Bartek Stajnowski/.gradle/caches/transforms-2/files-2.1/309ac15949fe4b83e72035ff1aa3dd2c/jars/classes.jar;C:/Users/Bartek Stajnowski/.gradle/caches/transforms-2/files-2.1/194abce7e0d9cb0c1036599090893f2b/jars/classes.jar;C:/Users/Bartek Stajnowski/.gradle/caches/transforms-2/files-2.1/091649b287ee89a7e12c9407f423317c/jars/classes.jar;C:/Users/Bartek Stajnowski/.gradle/caches/transforms-2/files-2.1/63ef264eb9aec42a310899037c494717/jars/classes.jar;C:/Users/Bartek Stajnowski/.gradle/caches/transforms-2/files-2.1/ffd3df82693ee3dfe74fcc8aadb1d8aa/jars/classes.jar;C:/Users/Bartek Stajnowski/.gradle/caches/transforms-2/files-2.1/3fc65efb2575a7463634c248703297b5/jars/classes.jar;C:/Users/Bartek Stajnowski/.gradle/caches/modules-2/files-2.1/android.arch.lifecycle/common/1.1.1/207a6efae6a3555e326de41f76bdadd9a239cbce/common-1.1.1.jar;C:/Users/Bartek Stajnowski/.gradle/caches/transforms-2/files-2.1/e16a82a3052ca4ea52b65de4b5ebf017/jars/classes.jar;C:/Users/Bartek Stajnowski/.gradle/caches/modules-2/files-2.1/android.arch.core/common/1.1.1/e55b70d1f5620db124b3e85a7f4bdc7bd48d9f95/common-1.1.1.jar;C:/Users/Bartek Stajnowski/.gradle/caches/modules-2/files-2.1/com.android.support/support-annotations/28.0.0/ed73f5337a002d1fd24339d5fb08c2c9d9ca60d8/support-annotations-28.0.0.jar;C:/Users/Bartek Stajnowski/.gradle/caches/transforms-2/files-2.1/5ffc19351c55d25db8d92e421365c35d/jars/classes.jar;C:/Users/Bartek Stajnowski/.gradle/caches/modules-2/files-2.1/com.android.support.constraint/constraint-layout-solver/1.1.3/bde0667d7414c16ed62d3cfe993cff7f9d732373/constraint-layout-solver-1.1.3.jar;C:/Users/Bartek Stajnowski/AppData/Local/Android/Sdk/platforms/android-28/android.jar" />
+          <option name="classpath" value="$USER_HOME$/.gradle/caches/transforms-2/files-2.1/2d48a03a02fe79075016976e270c5929/jars/classes.jar;C:/Users/Sebastian/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-stdlib-jdk7/1.3.20/aa17d6fd473ce53061a7b2b9d2ae96f547cae93d/kotlin-stdlib-jdk7-1.3.20.jar;C:/Users/Sebastian/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-stdlib/1.3.20/eb2a232734e09fcd1b958a5c7520a93c6de38b32/kotlin-stdlib-1.3.20.jar;C:/Users/Sebastian/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-stdlib-common/1.3.20/7d7934e26ce34da1a0a8d00e38038d7cf3375e89/kotlin-stdlib-common-1.3.20.jar;C:/Users/Sebastian/.gradle/caches/modules-2/files-2.1/org.jetbrains/annotations/13.0/919f0dfe192fb4e063e7dacadee7f8bb9a2672a9/annotations-13.0.jar;C:/Users/Sebastian/.gradle/caches/transforms-2/files-2.1/cd4fa9507e65c364f171427ca461687e/jars/classes.jar;C:/Users/Sebastian/.gradle/caches/transforms-2/files-2.1/3c01642b1dea486e9f1da4ad1aff8cc5/jars/classes.jar;C:/Users/Sebastian/.gradle/caches/transforms-2/files-2.1/19ba905c8e04d46319e4c98f39edffcc/jars/classes.jar;C:/Users/Sebastian/.gradle/caches/transforms-2/files-2.1/e2bcd0b3614ab8695812b5145be2c5e8/jars/classes.jar;C:/Users/Sebastian/.gradle/caches/transforms-2/files-2.1/6f72f278b92d1762d781d2d209e42260/jars/classes.jar;C:/Users/Sebastian/.gradle/caches/transforms-2/files-2.1/43c8f0a01f2c437f644364dff4762e44/jars/classes.jar;C:/Users/Sebastian/.gradle/caches/transforms-2/files-2.1/17dd950fe4a99ce83376b44bfee7731d/jars/classes.jar;C:/Users/Sebastian/.gradle/caches/transforms-2/files-2.1/0061fec83007782b9d52f4c3a46bee9f/jars/classes.jar;C:/Users/Sebastian/.gradle/caches/transforms-2/files-2.1/254b0688ebbba876d6bb7f06c9b113c3/jars/classes.jar;C:/Users/Sebastian/.gradle/caches/transforms-2/files-2.1/1361b2a0b9583fb5e3556a5fc48a1431/jars/classes.jar;C:/Users/Sebastian/.gradle/caches/transforms-2/files-2.1/fdf95e06c4847decc8de8688b70b44a7/jars/classes.jar;C:/Users/Sebastian/.gradle/caches/transforms-2/files-2.1/dabd12ab5b8079eb8caa7ba876bb5389/jars/classes.jar;C:/Users/Sebastian/.gradle/caches/transforms-2/files-2.1/693cb5dfa3a6810dc1cc177328f99bd1/jars/classes.jar;C:/Users/Sebastian/.gradle/caches/transforms-2/files-2.1/2d4f12b51548ce78d333d13ce3cd2726/jars/classes.jar;C:/Users/Sebastian/.gradle/caches/transforms-2/files-2.1/67aeade6585bffcf4577103d91efb40d/jars/classes.jar;C:/Users/Sebastian/.gradle/caches/transforms-2/files-2.1/448f00a662cc2de896127dc589ec6b63/jars/classes.jar;C:/Users/Sebastian/.gradle/caches/transforms-2/files-2.1/bb2d7c4d0fd2a1730cc2290fd551a767/jars/classes.jar;C:/Users/Sebastian/.gradle/caches/transforms-2/files-2.1/7623accaefd308280347505d730306d6/jars/classes.jar;C:/Users/Sebastian/.gradle/caches/transforms-2/files-2.1/6435bb53557a2a65a7a109aa58c6d6d4/jars/classes.jar;C:/Users/Sebastian/.gradle/caches/transforms-2/files-2.1/d0de4807709cd6969c78d3ce39fd9a0c/jars/classes.jar;C:/Users/Sebastian/.gradle/caches/transforms-2/files-2.1/4a39a84ea5c13a319695c00093ecdfe6/jars/classes.jar;C:/Users/Sebastian/.gradle/caches/transforms-2/files-2.1/4fd35b96007c719720bc09ed71a9bc72/jars/classes.jar;C:/Users/Sebastian/.gradle/caches/modules-2/files-2.1/com.android.support/collections/28.0.0/c1bcdade4d3cc2836130424a3f3e4182c666a745/collections-28.0.0.jar;C:/Users/Sebastian/.gradle/caches/transforms-2/files-2.1/85724841e865afc57eabe576d806da67/jars/classes.jar;C:/Users/Sebastian/.gradle/caches/transforms-2/files-2.1/c3135ee0208e0cc111a2ba5322309dcb/jars/classes.jar;C:/Users/Sebastian/.gradle/caches/transforms-2/files-2.1/31d59b4d9e515c0772acc1b2df0dbb85/jars/classes.jar;C:/Users/Sebastian/.gradle/caches/transforms-2/files-2.1/c587068fe7c050492534d3f0a92ea07f/jars/classes.jar;C:/Users/Sebastian/.gradle/caches/transforms-2/files-2.1/cc2725d8f679fe39a0b4deda2511e7fa/jars/classes.jar;C:/Users/Sebastian/.gradle/caches/transforms-2/files-2.1/73ac1403dba77ddd105839779048f6e8/jars/classes.jar;C:/Users/Sebastian/.gradle/caches/transforms-2/files-2.1/fede01804878e1f571274e27ef407dd9/jars/classes.jar;C:/Users/Sebastian/.gradle/caches/transforms-2/files-2.1/da2722c4820d533660dfe5163f2dd0c9/jars/classes.jar;C:/Users/Sebastian/.gradle/caches/transforms-2/files-2.1/13f4154174a2a1c72a1b5438d93a8e91/jars/classes.jar;C:/Users/Sebastian/.gradle/caches/transforms-2/files-2.1/a42d0e6f5015798e41f2a29f8d0a3885/jars/classes.jar;C:/Users/Sebastian/.gradle/caches/modules-2/files-2.1/android.arch.lifecycle/common/1.1.1/207a6efae6a3555e326de41f76bdadd9a239cbce/common-1.1.1.jar;C:/Users/Sebastian/.gradle/caches/transforms-2/files-2.1/983e2ac9effd919349471f688cd03020/jars/classes.jar;C:/Users/Sebastian/.gradle/caches/modules-2/files-2.1/android.arch.core/common/1.1.1/e55b70d1f5620db124b3e85a7f4bdc7bd48d9f95/common-1.1.1.jar;C:/Users/Sebastian/.gradle/caches/modules-2/files-2.1/com.android.support/support-annotations/28.0.0/ed73f5337a002d1fd24339d5fb08c2c9d9ca60d8/support-annotations-28.0.0.jar;C:/Users/Sebastian/.gradle/caches/transforms-2/files-2.1/1b374e540c9ef7d8565d0dfa8ab56d45/jars/classes.jar;C:/Users/Sebastian/.gradle/caches/modules-2/files-2.1/com.android.support.constraint/constraint-layout-solver/1.1.3/bde0667d7414c16ed62d3cfe993cff7f9d732373/constraint-layout-solver-1.1.3.jar;D:/INNE/android-sdk/platforms/android-28/android.jar" />
           <option name="noStdlib" value="true" />
           <option name="noReflect" value="true" />
           <option name="moduleName" value="app_debug" />
@@ -79,13 +79,6 @@
       <sourceFolder url="file://$MODULE_DIR$/src/debug/java" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/debug/rs" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/debug/shaders" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/src/androidTestDebug/res" type="java-test-resource" />
-      <sourceFolder url="file://$MODULE_DIR$/src/androidTestDebug/resources" type="java-test-resource" />
-      <sourceFolder url="file://$MODULE_DIR$/src/androidTestDebug/assets" type="java-test-resource" />
-      <sourceFolder url="file://$MODULE_DIR$/src/androidTestDebug/aidl" isTestSource="true" />
-      <sourceFolder url="file://$MODULE_DIR$/src/androidTestDebug/java" isTestSource="true" />
-      <sourceFolder url="file://$MODULE_DIR$/src/androidTestDebug/rs" isTestSource="true" />
-      <sourceFolder url="file://$MODULE_DIR$/src/androidTestDebug/shaders" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/src/testDebug/res" type="java-test-resource" />
       <sourceFolder url="file://$MODULE_DIR$/src/testDebug/resources" type="java-test-resource" />
       <sourceFolder url="file://$MODULE_DIR$/src/testDebug/assets" type="java-test-resource" />
@@ -93,6 +86,13 @@
       <sourceFolder url="file://$MODULE_DIR$/src/testDebug/java" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/src/testDebug/rs" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/src/testDebug/shaders" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/src/androidTestDebug/res" type="java-test-resource" />
+      <sourceFolder url="file://$MODULE_DIR$/src/androidTestDebug/resources" type="java-test-resource" />
+      <sourceFolder url="file://$MODULE_DIR$/src/androidTestDebug/assets" type="java-test-resource" />
+      <sourceFolder url="file://$MODULE_DIR$/src/androidTestDebug/aidl" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/src/androidTestDebug/java" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/src/androidTestDebug/rs" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/src/androidTestDebug/shaders" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/src/main/res" type="java-resource" />
       <sourceFolder url="file://$MODULE_DIR$/src/main/resources" type="java-resource" />
       <sourceFolder url="file://$MODULE_DIR$/src/main/assets" type="java-resource" />
@@ -100,13 +100,6 @@
       <sourceFolder url="file://$MODULE_DIR$/src/main/java" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/main/rs" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/main/shaders" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/src/test/res" type="java-test-resource" />
-      <sourceFolder url="file://$MODULE_DIR$/src/test/resources" type="java-test-resource" />
-      <sourceFolder url="file://$MODULE_DIR$/src/test/assets" type="java-test-resource" />
-      <sourceFolder url="file://$MODULE_DIR$/src/test/aidl" isTestSource="true" />
-      <sourceFolder url="file://$MODULE_DIR$/src/test/java" isTestSource="true" />
-      <sourceFolder url="file://$MODULE_DIR$/src/test/rs" isTestSource="true" />
-      <sourceFolder url="file://$MODULE_DIR$/src/test/shaders" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/src/androidTest/res" type="java-test-resource" />
       <sourceFolder url="file://$MODULE_DIR$/src/androidTest/resources" type="java-test-resource" />
       <sourceFolder url="file://$MODULE_DIR$/src/androidTest/assets" type="java-test-resource" />
@@ -114,6 +107,13 @@
       <sourceFolder url="file://$MODULE_DIR$/src/androidTest/java" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/src/androidTest/rs" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/src/androidTest/shaders" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/src/test/res" type="java-test-resource" />
+      <sourceFolder url="file://$MODULE_DIR$/src/test/resources" type="java-test-resource" />
+      <sourceFolder url="file://$MODULE_DIR$/src/test/assets" type="java-test-resource" />
+      <sourceFolder url="file://$MODULE_DIR$/src/test/aidl" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/src/test/java" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/src/test/rs" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/src/test/shaders" isTestSource="true" />
       <excludeFolder url="file://$MODULE_DIR$/build/generated/not_namespaced_r_class_sources" />
       <excludeFolder url="file://$MODULE_DIR$/build/generated/source/r" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/annotation_processor_list" />
@@ -135,6 +135,7 @@
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/instant_run_merged_manifests" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/instant_run_split_apk_resources" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/javac" />
+      <excludeFolder url="file://$MODULE_DIR$/build/intermediates/jniLibs" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/lint_jar" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/manifest-checker" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/merged_assets" />
@@ -147,7 +148,9 @@
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/reload-dex" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/res" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/resources" />
+      <excludeFolder url="file://$MODULE_DIR$/build/intermediates/rs" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/shader_assets" />
+      <excludeFolder url="file://$MODULE_DIR$/build/intermediates/shaders" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/signing_config" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/split-apk" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/symbols" />
@@ -163,6 +166,7 @@
     <orderEntry type="library" name="Gradle: com.android.support:support-fragment:28.0.0@aar" level="project" />
     <orderEntry type="library" name="Gradle: com.android.support:localbroadcastmanager:28.0.0@aar" level="project" />
     <orderEntry type="library" name="Gradle: com.android.support:animated-vector-drawable:28.0.0@aar" level="project" />
+    <orderEntry type="library" name="Gradle: com.github.lecho:hellocharts-library:1.5.8@aar" level="project" />
     <orderEntry type="library" name="Gradle: android.arch.lifecycle:viewmodel:1.1.1@aar" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: com.android.support.test.espresso:espresso-idling-resource:3.0.2@aar" level="project" />
     <orderEntry type="library" name="Gradle: com.android.support:loader:28.0.0@aar" level="project" />

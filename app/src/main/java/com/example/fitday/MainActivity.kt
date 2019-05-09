@@ -2,9 +2,11 @@ package com.example.fitday
 
 import android.app.Activity
 import android.content.Intent
+import android.graphics.Color
 import android.os.Bundle
 import android.support.design.widget.Snackbar
 import android.support.design.widget.NavigationView
+import android.support.v4.content.res.ResourcesCompat
 import android.support.v4.view.GravityCompat
 import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.app.AppCompatActivity
@@ -13,6 +15,9 @@ import android.view.MenuItem
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar_main.*
+import kotlinx.android.synthetic.main.content_main.*
+import lecho.lib.hellocharts.model.PieChartData
+import lecho.lib.hellocharts.model.SliceValue
 
 const val CHANGE_BODY_PARAMETERS_REQUEST_CODE = 1212
 var PPM = 0.0f
@@ -35,6 +40,45 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         toggle.syncState()
 
         nav_view.setNavigationItemSelectedListener(this)
+
+        createPieChart()
+    }
+
+    private fun createPieChart() {
+        val caloriesPercentage = 23f
+        val caloriesData = ArrayList<SliceValue>()
+        val emptyColor = Color.parseColor("#bababa")
+        val caloriesColor = ResourcesCompat.getColor(resources, R.color.colorCalories, null)
+        caloriesData.add(SliceValue(caloriesPercentage, caloriesColor))
+        caloriesData.add(SliceValue(100-caloriesPercentage, emptyColor))
+
+        val caloriesChartData = PieChartData(caloriesData)
+        caloriesChartData.setHasCenterCircle(true)
+        caloriesChartData.slicesSpacing = 0
+        outerChart.pieChartData = caloriesChartData
+        outerChart.setChartRotation(-90, true)
+
+        val protein = 18f
+        val carbs = 7f
+        val fat = 75f
+        val proteinColor = ResourcesCompat.getColor(resources, R.color.colorProtein, null)
+        val carbsColor = ResourcesCompat.getColor(resources, R.color.colorCarbs, null)
+        val fatColor = ResourcesCompat.getColor(resources, R.color.colorFat, null)
+        val backgroundColor = ResourcesCompat.getColor(resources, R.color.backgroundGray, null)
+
+        val nutrientsData = ArrayList<SliceValue>()
+        nutrientsData.add(SliceValue(protein, proteinColor))
+        nutrientsData.add(SliceValue(carbs, carbsColor))
+        nutrientsData.add(SliceValue(fat, fatColor))
+
+        val nutrientsChartData = PieChartData(nutrientsData)
+        nutrientsChartData.slicesSpacing = 0
+        nutrientsChartData.setHasCenterCircle(true)
+        nutrientsChartData.centerCircleScale = 0.9f
+        nutrientsChartData.centerCircleColor = backgroundColor
+
+        innerChart.pieChartData = nutrientsChartData
+        innerChart.setChartRotation(-90, true)
     }
 
     override fun onBackPressed() {

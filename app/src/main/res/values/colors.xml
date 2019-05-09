@@ -3,4 +3,10 @@
     <color name="colorPrimary">#008577</color>
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
+    <color name="colorCalories">#10b515</color>
+    <color name="colorProtein">#443c39</color>
+    <color name="colorCarbs">#ff6100</color>
+    <color name="colorFat">#dbef00</color>
+    <color name="colorOther">#636363</color>
+    <color name="backgroundGray">#dbdbdb</color>
 </resources>

@@ -12,13 +12,13 @@ import android.text.style.StyleSpan
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import kotlinx.android.synthetic.main.content_main.*
+import kotlinx.android.synthetic.main.pie_charts.*
 import lecho.lib.hellocharts.model.PieChartData
 import lecho.lib.hellocharts.model.SliceValue
 
-class PieChartFragment : Fragment() {
+class PieChartsFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.content_main, container, false)
+        return inflater.inflate(R.layout.pie_charts, container, false)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {

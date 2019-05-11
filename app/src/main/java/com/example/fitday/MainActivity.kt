@@ -44,7 +44,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         val pagerAdapter = MainTabsPagerAdapter(supportFragmentManager)
         viewPager.adapter = pagerAdapter
 
-//        tabs.setupWithViewPager(viewPager)
+        tabs.setupWithViewPager(viewPager)
 
     }
 

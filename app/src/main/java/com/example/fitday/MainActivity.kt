@@ -21,6 +21,8 @@ import android.view.Menu
 import android.view.MenuItem
 import android.widget.TextView
 import android.widget.Toast
+import com.bestsoft32.tt_fancy_gif_dialog_lib.TTFancyGifDialog
+import com.bestsoft32.tt_fancy_gif_dialog_lib.TTFancyGifDialogListener
 import com.example.fitday.retrofit.InspirationAPI
 import com.example.fitday.retrofit.InspirationDTO
 import kotlinx.android.synthetic.main.activity_main.*
@@ -48,7 +50,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         fab.setOnClickListener { view ->
             Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                 .setAction("Action", null).show()
-            getQuote()
 
         }
 
@@ -66,6 +67,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     override fun onStart() {
         super.onStart()
+        getQuote()
+
     }
     private fun addPieLabels() {
 
@@ -253,12 +256,40 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         call.enqueue(object : Callback<InspirationDTO> {
             override fun onFailure(call: Call<InspirationDTO>, t: Throwable) {
                 Log.d("inspiration", "ups ${call} $t")
+                var dialog = TTFancyGifDialog.Builder(this@MainActivity)
+                    .setTitle("Your daily quote")
+                    .setMessage("Never give up and keep moving forward!!!")
+                    .setPositiveBtnText("Lets go")
+                    .setPositiveBtnBackground("#22b573")
+                    .setGifResource(R.drawable.strength)      //pass your gif, png or jpg
+                    .isCancellable(true)
+                    .OnPositiveClicked( TTFancyGifDialogListener() {
+
+                        fun OnClick() {
+                            Toast.makeText(this@MainActivity,"Ok",Toast.LENGTH_SHORT).show();
+                        }
+                    })
+                    .build()
             }
 
             override fun onResponse(call: Call<InspirationDTO>, response: Response<InspirationDTO>) {
                 val mybody = response.body()
                 var quote = mybody!!.contents.quotes.get(0).quote
-                Toast.makeText(this@MainActivity,"$quote",Toast.LENGTH_LONG).show()
+                //Toast.makeText(this@MainActivity,"$quote",Toast.LENGTH_LONG).show()
+                var dialog = TTFancyGifDialog.Builder(this@MainActivity)
+                    .setTitle("Your daily quote")
+                    .setMessage("$quote")
+                    .setPositiveBtnText("Lets go")
+                    .setPositiveBtnBackground("#22b573")
+                    .setGifResource(R.drawable.strength)      //pass your gif, png or jpg
+                    .isCancellable(true)
+                    .OnPositiveClicked( TTFancyGifDialogListener() {
+
+                         fun OnClick() {
+                            Toast.makeText(this@MainActivity,"Ok",Toast.LENGTH_SHORT).show();
+                        }
+                    })
+                    .build()
             }
         })
     }

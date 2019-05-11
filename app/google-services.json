@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "162207318301",
+    "firebase_url": "https://fitday-app-9fc6e.firebaseio.com",
+    "project_id": "fitday-app-9fc6e",
+    "storage_bucket": "fitday-app-9fc6e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:162207318301:android:d48f1166067de0fe",
+        "android_client_info": {
+          "package_name": "com.example.fitday"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "162207318301-9ugep7ctciboh8frg5d071ommgvf83sq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDwaOvIByhLtzRxHMgHE0a9O8e-0DseWoo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "162207318301-9ugep7ctciboh8frg5d071ommgvf83sq.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

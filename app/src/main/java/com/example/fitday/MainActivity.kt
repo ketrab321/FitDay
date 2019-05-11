@@ -51,6 +51,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         val pagerAdapter = MainTabsPagerAdapter(supportFragmentManager)
         viewPager.adapter = pagerAdapter
+        viewPager.offscreenPageLimit = 2
 
         tabs.setupWithViewPager(viewPager)
 

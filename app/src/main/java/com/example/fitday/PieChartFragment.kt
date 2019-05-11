@@ -19,8 +19,67 @@ class PieChartFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         createPieChart()
+        addPieLabels()
     }
+    
+    private fun addPieLabels() {
 
+        fun SpannableStringBuilder.append(str: String, color: Int, style: Any?) {
+            val start = length
+            val col = ForegroundColorSpan(color)
+            append(str)
+            setSpan(col, start, length, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
+            if (style != null)
+                setSpan(style, start, length, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
+
+        }
+        val bold = StyleSpan(Typeface.BOLD)
+        var label = SpannableStringBuilder()
+        val ex = Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
+
+        val caloriesColor = ResourcesCompat.getColor(resources, R.color.colorCalories, null)
+        label.append("■ ", caloriesColor, null)
+        label.append("Kalorie: ")
+        label.append("${432.5}", caloriesColor, bold)
+        caloriesLabel.text = label
+
+        label = SpannableStringBuilder()
+        val proteinColor = ResourcesCompat.getColor(resources, R.color.colorProtein, null)
+        label.append("■ ", proteinColor, null)
+        label.append("Białka: ")
+        label.append("${46.2}", proteinColor, bold)
+        label.append(" g")
+        label.append(" ${42}%", proteinColor, null)
+        proteinLabel.text = label
+
+        label = SpannableStringBuilder()
+        val carbsColor = ResourcesCompat.getColor(resources, R.color.colorCarbs, null)
+        label.append("■ ", carbsColor, null)
+        label.append("Węglowodany: ")
+        label.append("${56.1}", carbsColor, bold)
+        //label.append(" g")
+        label.append(" ${52}%", carbsColor, null)
+        carbsLabel.text = label
+
+
+        label = SpannableStringBuilder()
+        val fatColor = ResourcesCompat.getColor(resources, R.color.colorFat, null)
+        label.append("■ ", fatColor, null)
+        label.append("Tłuszcze: ")
+        label.append("${5.5}", fatColor, bold)
+        label.append(" g")
+        label.append(" ${5}%", fatColor, null)
+        fatLabel.text = label
+
+        label = SpannableStringBuilder()
+        val leftColor = Color.parseColor("#bababa")
+        label.append("■ ", leftColor, null)
+        label.append("Pozostało: ")
+        label.append("${1465.8}", proteinColor, bold)
+        label.append(" kcal")
+        leftLabel.text = label
+    }
+    
     private fun createPieChart() {
         val caloriesPercentage = 23f
         val caloriesData = ArrayList<SliceValue>()

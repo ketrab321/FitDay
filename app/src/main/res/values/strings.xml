@@ -14,5 +14,6 @@
     <string name="weight_text_view">Weight</string>
     <string name="age_text_view">Age</string>
     <string name="confirm_button">Confirm</string>
+    <string name="title_activity_gallery">Gallery</string>
 
 </resources>

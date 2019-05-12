@@ -5,7 +5,6 @@ import android.content.Intent
 import android.graphics.Color
 import android.graphics.Typeface
 import android.os.Bundle
-import android.provider.AlarmClock.EXTRA_MESSAGE
 import android.support.design.widget.Snackbar
 import android.support.design.widget.NavigationView
 import android.support.v4.content.res.ResourcesCompat
@@ -13,14 +12,16 @@ import android.support.v4.view.GravityCompat
 import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.app.AppCompatActivity
 import android.text.Spannable
-import android.text.SpannableString
 import android.text.SpannableStringBuilder
 import android.text.style.ForegroundColorSpan
 import android.text.style.StyleSpan
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
+import com.google.firebase.auth.FirebaseAuth
+import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar_main.*
 import kotlinx.android.synthetic.main.content_main.*
@@ -38,6 +39,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         val intent = Intent(this, SignInActivity::class.java).apply {}
         startActivity(intent)
+        setUserDataOnHeader()
+
 
         fab.setOnClickListener { view ->
             Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
@@ -54,6 +57,24 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         createPieChart()
         addPieLabels()
+    }
+
+    private fun setUserDataOnHeader(){
+        val user = FirebaseAuth.getInstance().currentUser
+        if(user != null){
+            val navView = findViewById<NavigationView>(R.id.nav_view)
+            val v = navView.getHeaderView(0)
+            val nameContainer = v.findViewById<TextView>(R.id.userName)
+            val emailContainer = v.findViewById<TextView>(R.id.userEmail)
+            val avatarContainer = v.findViewById<ImageView>(R.id.userAvatar)
+            nameContainer.text = user.displayName.toString()
+            emailContainer.text = user.email
+            //Todo: Proper avatar resize
+            Picasso.get().load(user.photoUrl)
+                .resize(200, 200)
+                .into(avatarContainer)
+        }
+
     }
 
 
@@ -212,7 +233,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         if (requestCode == CHANGE_BODY_PARAMETERS_REQUEST_CODE) {
             if (resultCode == Activity.RESULT_OK) {
-                var resultPPM = data!!.getFloatExtra("PPM",0.0f)
+                val resultPPM = data!!.getFloatExtra("PPM",0.0f)
                 PPM = resultPPM
                 Toast.makeText(this,"Return $resultPPM",Toast.LENGTH_SHORT).show()
             }

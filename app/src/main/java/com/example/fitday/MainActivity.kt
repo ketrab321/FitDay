@@ -16,6 +16,7 @@ import com.bestsoft32.tt_fancy_gif_dialog_lib.TTFancyGifDialog
 import com.bestsoft32.tt_fancy_gif_dialog_lib.TTFancyGifDialogListener
 import com.example.fitday.retrofit.InspirationAPI
 import com.example.fitday.retrofit.InspirationDTO
+import android.support.v7.app.AppCompatDelegate
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar_main.*
 import okhttp3.OkHttpClient
@@ -46,6 +47,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         )
         drawer_layout.addDrawerListener(toggle)
         toggle.syncState()
+        AppCompatDelegate.setCompatVectorFromResourcesEnabled(true)
 
         nav_view.setNavigationItemSelectedListener(this)
 
@@ -54,13 +56,11 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         viewPager.offscreenPageLimit = 2
 
         tabs.setupWithViewPager(viewPager)
-
     }
 
     override fun onStart() {
         super.onStart()
         getQuote()
-
     }
 
     override fun onBackPressed() {

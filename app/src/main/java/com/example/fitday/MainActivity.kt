@@ -177,6 +177,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                                 Toast.makeText(this@MainActivity, "Ok", Toast.LENGTH_SHORT).show();
                             }
                         })
+                    dialog.build()
                 }
                 else
                 {

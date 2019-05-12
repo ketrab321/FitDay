@@ -35,6 +35,11 @@ dependencies {
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
 
     implementation 'com.michaelmuenzer.android:ScrollableNumberPicker:0.2.2'
+    //firebase
     implementation 'com.google.firebase:firebase-core:16.0.9'
+    implementation 'com.google.firebase:firebase-auth:17.0.0'
+    //play service auth
+    implementation 'com.google.android.gms:play-services-auth:16.0.1'
+
 }
 apply plugin: 'com.google.gms.google-services'

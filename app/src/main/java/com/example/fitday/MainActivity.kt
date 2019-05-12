@@ -5,6 +5,7 @@ import android.content.Intent
 import android.graphics.Color
 import android.graphics.Typeface
 import android.os.Bundle
+import android.provider.AlarmClock.EXTRA_MESSAGE
 import android.support.design.widget.Snackbar
 import android.support.design.widget.NavigationView
 import android.support.v4.content.res.ResourcesCompat
@@ -34,6 +35,9 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
+
+        val intent = Intent(this, SignInActivity::class.java).apply {}
+        startActivity(intent)
 
         fab.setOnClickListener { view ->
             Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)

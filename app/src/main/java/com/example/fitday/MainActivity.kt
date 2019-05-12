@@ -14,6 +14,7 @@ import android.view.MenuItem
 import android.widget.Toast
 import com.bestsoft32.tt_fancy_gif_dialog_lib.TTFancyGifDialog
 import com.bestsoft32.tt_fancy_gif_dialog_lib.TTFancyGifDialogListener
+import com.example.fitday.Gallery.Gallery
 import com.example.fitday.retrofit.InspirationAPI
 import com.example.fitday.retrofit.InspirationDTO
 import android.support.v7.app.AppCompatDelegate
@@ -99,7 +100,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 // Handle the camera action
             }
             R.id.nav_gallery -> {
-
+                var intent = Intent(this,Gallery::class.java)
+                startActivity(intent)
             }
             R.id.nav_slideshow -> {
 
@@ -154,41 +156,51 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         call.enqueue(object : Callback<InspirationDTO> {
             override fun onFailure(call: Call<InspirationDTO>, t: Throwable) {
                 Log.d("inspiration", "ups ${call} $t")
-                var dialog = TTFancyGifDialog.Builder(this@MainActivity)
-                    .setTitle("Your daily quote")
-                    .setMessage("Never give up and keep moving forward!!!")
-                    .setPositiveBtnText("Lets go")
-                    .setPositiveBtnBackground("#22b573")
-                    .setGifResource(R.drawable.strength)      //pass your gif, png or jpg
-                    .isCancellable(true)
-                    .OnPositiveClicked( TTFancyGifDialogListener() {
-
-                        fun OnClick() {
-                            Toast.makeText(this@MainActivity,"Ok",Toast.LENGTH_SHORT).show();
-                        }
-                    })
-                    .build()
+                defaultQuote()
             }
 
             override fun onResponse(call: Call<InspirationDTO>, response: Response<InspirationDTO>) {
-                val mybody = response.body()
-                var quote = mybody!!.contents.quotes.get(0).quote
-                //Toast.makeText(this@MainActivity,"$quote",Toast.LENGTH_LONG).show()
-                var dialog = TTFancyGifDialog.Builder(this@MainActivity)
-                    .setTitle("Your daily quote")
-                    .setMessage("$quote")
-                    .setPositiveBtnText("Lets go")
-                    .setPositiveBtnBackground("#22b573")
-                    .setGifResource(R.drawable.strength)      //pass your gif, png or jpg
-                    .isCancellable(true)
-                    .OnPositiveClicked( TTFancyGifDialogListener() {
+                if(response.isSuccessful) {
+                    Log.i("retrofit","success")
+                    val mybody = response.body()
+                    var quote = mybody!!.contents.quotes[0].quote
+                    var dialog = TTFancyGifDialog.Builder(this@MainActivity)
+                        .setTitle("Your daily quote")
+                        .setMessage("$quote")
+                        .setPositiveBtnText("Lets go")
+                        .setPositiveBtnBackground("#22b573")
+                        .setGifResource(R.drawable.strength)      //pass your gif, png or jpg
+                        .isCancellable(true)
+                        .OnPositiveClicked(TTFancyGifDialogListener() {
 
-                         fun OnClick() {
-                            Toast.makeText(this@MainActivity,"Ok",Toast.LENGTH_SHORT).show();
-                        }
-                    })
-                    .build()
+                            fun OnClick() {
+                                Toast.makeText(this@MainActivity, "Ok", Toast.LENGTH_SHORT).show();
+                            }
+                        })
+                    dialog.build()
+                }
+                else
+                {
+                    defaultQuote()
+                }
             }
         })
+    }
+
+    private fun defaultQuote(){
+        var dialog = TTFancyGifDialog.Builder(this@MainActivity)
+            .setTitle("Your daily quote")
+            .setMessage("Never give up and keep moving forward!!!")
+            .setPositiveBtnText("Lets go")
+            .setPositiveBtnBackground("#22b573")
+            .setGifResource(R.drawable.strength)      //pass your gif, png or jpg
+            .isCancellable(true)
+            .OnPositiveClicked( TTFancyGifDialogListener() {
+
+                fun OnClick() {
+                    Toast.makeText(this@MainActivity,"Ok",Toast.LENGTH_SHORT).show();
+                }
+            })
+            .build()
     }
 }

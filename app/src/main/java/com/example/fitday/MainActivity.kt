@@ -21,6 +21,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.FirebaseDatabase
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar_main.*
@@ -31,6 +32,8 @@ import lecho.lib.hellocharts.model.SliceValue
 const val CHANGE_BODY_PARAMETERS_REQUEST_CODE = 1212
 var PPM = 0.0f
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
+
+    val database = FirebaseDatabase.getInstance().setPersistenceEnabled(true)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

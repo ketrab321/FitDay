@@ -18,6 +18,11 @@ import com.example.fitday.Gallery.Gallery
 import com.example.fitday.retrofit.InspirationAPI
 import com.example.fitday.retrofit.InspirationDTO
 import android.support.v7.app.AppCompatDelegate
+import android.widget.ImageView
+import android.widget.TextView
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.FirebaseDatabase
+import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar_main.*
 import okhttp3.OkHttpClient
@@ -140,6 +145,24 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 //Write your code if there's no result
             }
         }
+    }
+
+    private fun setUserDataOnHeader(){
+        val user = FirebaseAuth.getInstance().currentUser
+        if(user != null){
+            val navView = findViewById<NavigationView>(R.id.nav_view)
+            val v = navView.getHeaderView(0)
+            val nameContainer = v.findViewById<TextView>(R.id.userName)
+            val emailContainer = v.findViewById<TextView>(R.id.userEmail)
+            val avatarContainer = v.findViewById<ImageView>(R.id.userAvatar)
+            nameContainer.text = user.displayName.toString()
+            emailContainer.text = user.email
+            //Todo: Proper avatar resize
+            Picasso.get().load(user.photoUrl)
+                .resize(200, 200)
+                .into(avatarContainer)
+        }
+
     }
 
     private fun getQuote()

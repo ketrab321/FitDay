@@ -32,10 +32,17 @@ const val CHANGE_BODY_PARAMETERS_REQUEST_CODE = 1212
 var PPM = 0.0f
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
+    val database = FirebaseDatabase.getInstance().setPersistenceEnabled(true)
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
+
+        val intent = Intent(this, SignInActivity::class.java).apply {}
+        startActivity(intent)
+        setUserDataOnHeader()
+
 
         fab.setOnClickListener { view ->
             Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
@@ -125,7 +132,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         if (requestCode == CHANGE_BODY_PARAMETERS_REQUEST_CODE) {
             if (resultCode == Activity.RESULT_OK) {
-                var resultPPM = data!!.getFloatExtra("PPM",0.0f)
+                val resultPPM = data!!.getFloatExtra("PPM",0.0f)
                 PPM = resultPPM
                 Toast.makeText(this,"Return $resultPPM",Toast.LENGTH_SHORT).show()
             }

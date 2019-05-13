@@ -20,6 +20,8 @@
                 android:label="@string/title_activity_gallery"
                 android:theme="@style/AppTheme.NoActionBar">
         </activity>
+        <activity android:name=".SignInActivity">
+        </activity>
         <activity android:name=".BodyParamsForm">
         </activity>
         <activity
@@ -43,5 +45,7 @@
         </provider>
 
     </application>
+
+    <uses-permission android:name="android.permission.INTERNET" />
 
 </manifest>

@@ -1,10 +1,15 @@
 package com.example.fitday
 
+import android.Manifest
 import android.app.Activity
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.os.Bundle
+import android.os.Handler
 import android.support.design.widget.Snackbar
 import android.support.design.widget.NavigationView
+import android.support.v4.app.ActivityCompat
+import android.support.v4.content.ContextCompat
 import android.support.v4.view.GravityCompat
 import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.app.AppCompatActivity
@@ -37,6 +42,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 //Version: 0.1
 const val CHANGE_BODY_PARAMETERS_REQUEST_CODE = 1212
 var PPM = 0.0f
+private const val TIME_OUT = 800
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
     val database = FirebaseDatabase.getInstance().setPersistenceEnabled(true)
@@ -46,10 +52,23 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
 
+        Handler().postDelayed(
+            {
+                // check if user has grannted permission to access device external storage.
+                // if not ask user for access to external storage.
+                if (!checkSelfPermission()) {
+                    requestPermission()
+                } else {
+                    // if permission granted read images from storage.
+                    //  source code for this function can be found below.
+                    Toast.makeText(this, "All permissions granted", Toast.LENGTH_SHORT).show()
+
+                }
+            }, TIME_OUT.toLong())
+
         val intent = Intent(this, SignInActivity::class.java).apply {}
         startActivity(intent)
         setUserDataOnHeader()
-
 
         fab.setOnClickListener { view ->
             Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
@@ -72,7 +91,33 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         tabs.setupWithViewPager(viewPager)
     }
+    private fun requestPermission() {
+        ActivityCompat.requestPermissions(this, arrayOf(
+            Manifest.permission.READ_EXTERNAL_STORAGE,
+            Manifest.permission.INTERNET,
+            Manifest.permission.WRITE_EXTERNAL_STORAGE,
+            Manifest.permission.CAMERA), 6666)
+    }
+    private fun checkSelfPermission(): Boolean {
 
+        return ((ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED)&&
+                (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED)&&
+                (ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED)&&
+                (ContextCompat.checkSelfPermission(this, Manifest.permission.INTERNET) == PackageManager.PERMISSION_GRANTED))
+    }
+    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
+        when (requestCode) {
+            6666 -> {
+                if (grantResults.size > 0) {
+                    var permissionGranted = grantResults[0] == PackageManager.PERMISSION_GRANTED
+                    if (!permissionGranted) {
+                        Toast.makeText(this, "Permission Denied! Cannot load images.", Toast.LENGTH_SHORT).show()
+                    }
+                }
+            }
+        }
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+    }
     override fun onStart() {
         super.onStart()
         getQuote()

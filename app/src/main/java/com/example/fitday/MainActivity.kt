@@ -33,6 +33,8 @@ import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
+
+//Version: 0.1
 const val CHANGE_BODY_PARAMETERS_REQUEST_CODE = 1212
 var PPM = 0.0f
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {

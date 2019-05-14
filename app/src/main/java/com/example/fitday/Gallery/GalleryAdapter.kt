@@ -5,6 +5,7 @@ import android.app.Dialog
 import android.content.Context
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
+import android.media.ThumbnailUtils
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -18,8 +19,9 @@ import com.example.fitday.BuildConfig
 import java.io.File
 import java.lang.Math.pow
 import java.net.URI
+import kotlin.concurrent.thread
 
-const val THUMBNAIL_SIZE = 8
+const val THUMBNAIL_SIZE = 128
 
 class GalleryAdapter(private var activity: Activity, private var items: ArrayList<String>) : BaseAdapter() {
     private class ViewHolder(row: View?) {
@@ -49,10 +51,19 @@ class GalleryAdapter(private var activity: Activity, private var items: ArrayLis
 
 
         var parts = items[position].split("||")
-        viewHolder.date?.text = parts[1]
-        val myBitmap = getPreview(items[position])
+        var date = if(parts.size>1) {
+            parts[1]
+        }
+        else
+        {
+            parts[0]
+        }
+            viewHolder.date?.text = date
+
         //val myBitmap = BitmapFactory.decodeFile(imgFile.getAbsolutePath().toString() )
-        viewHolder.image?.setImageBitmap(myBitmap)
+        val myBitmap2 = getPreview(items[position])
+
+        viewHolder.image?.setImageBitmap(myBitmap2)
 
         view!!.setOnLongClickListener{view1 ->
             imgFile.delete()
@@ -62,7 +73,7 @@ class GalleryAdapter(private var activity: Activity, private var items: ArrayLis
         }
 
         view!!.setOnClickListener { view2 ->
-            var myDialog = PhotoDialog(activity,imgFile,parts[1])
+            var myDialog = PhotoDialog(activity,imgFile,date)
             myDialog.show()
         }
         return view as View

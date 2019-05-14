@@ -66,8 +66,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 }
             }, TIME_OUT.toLong())
 
-        val intent = Intent(this, SignInActivity::class.java).apply {}
-        startActivity(intent)
+//        val intent = Intent(this, SignInActivity::class.java).apply {}
+//        startActivity(intent)
 
         fab.setOnClickListener { view ->
             Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)

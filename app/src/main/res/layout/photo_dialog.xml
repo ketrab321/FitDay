@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                             xmlns:app="http://schemas.android.com/apk/res-auto"
+                                             xmlns:tools="http://schemas.android.com/tools"
+                                             android:layout_width="@dimen/_281sdp"
+                                             android:layout_height="wrap_content" android:id="@+id/relativeLayout">
+
+    <ImageView
+
+            android:layout_width="@dimen/_281sdp"
+            android:layout_height="@dimen/_300sdp"
+            android:id="@+id/fullSizeImage"
+            android:scaleType="fitXY"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintVertical_bias="0.0"
+            android:background="@drawable/circle_shape"
+    />
+
+    <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@+id/fullSizeImage" app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintVertical_bias="1.0" app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" android:background="#7C8683">
+        <ImageView
+                android:layout_width="@dimen/_51sdp"
+                android:layout_height="@dimen/_51sdp" app:srcCompat="@drawable/muscle" android:id="@+id/imageView"
+        />
+        <TextView
+                android:text="Date: "
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent" android:id="@+id/dialog_date"
+                android:textAlignment="center" android:textSize="24sp"/>
+    </LinearLayout>
+
+</android.support.constraint.ConstraintLayout>

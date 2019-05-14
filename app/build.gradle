@@ -51,6 +51,7 @@ dependencies {
 
     //play service auth
     implementation 'com.google.android.gms:play-services-auth:16.0.1'
+    //end
 
 }
 apply plugin: 'com.google.gms.google-services'

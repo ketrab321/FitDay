@@ -66,9 +66,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 }
             }, TIME_OUT.toLong())
 
-//        val intent = Intent(this, SignInActivity::class.java).apply {}
-//        startActivity(intent)
-//        setUserDataOnHeader()
+        val intent = Intent(this, SignInActivity::class.java).apply {}
+        startActivity(intent)
 
         fab.setOnClickListener { view ->
             Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
@@ -121,6 +120,11 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     override fun onStart() {
         super.onStart()
         getQuote()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        setUserDataOnHeader()
     }
 
     override fun onBackPressed() {

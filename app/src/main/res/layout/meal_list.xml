@@ -10,4 +10,8 @@
             android:layout_marginStart="8dp" app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="8dp"
             android:layout_marginBottom="8dp" app:layout_constraintBottom_toBottomOf="parent"
     />
+    <ListView
+            android:layout_width="395dp"
+            android:layout_height="659dp" tools:layout_editor_absoluteY="5dp" app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginEnd="8dp" android:id="@+id/listView"/>
 </android.support.constraint.ConstraintLayout>

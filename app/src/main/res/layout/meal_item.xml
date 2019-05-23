@@ -1,34 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                                             xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
-                                             android:layout_height="match_parent">
+                                             xmlns:app="http://schemas.android.com/apk/res-auto"
+                                             xmlns:tools="http://schemas.android.com/tools"
+                                             android:layout_width="match_parent"
+                                             android:layout_height="wrap_content" android:layout_marginBottom="8dp">
 
     <TextView
             android:text="Kotlet schabowy z ziemniakami i mizerią"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:id="@+id/mealName"
-            android:layout_marginTop="16dp" app:layout_constraintTop_toTopOf="parent" android:textSize="24sp"
-            android:textColor="@color/black" android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp" app:layout_constraintTop_toTopOf="parent" android:textSize="24sp"
+            android:textColor="@color/black" android:layout_marginStart="8dp"
             app:layout_constraintStart_toStartOf="parent" android:layout_marginEnd="16dp"
             app:layout_constraintEnd_toEndOf="parent"/>
     <LinearLayout
             android:orientation="vertical"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" android:layout_marginTop="12dp"
+            android:layout_height="wrap_content" android:layout_marginTop="8dp"
             app:layout_constraintTop_toBottomOf="@+id/mealName" app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginStart="32dp">
+            android:layout_marginStart="24dp" app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginBottom="8dp">
         <TextView
                 android:text="Protein: 2.5 g"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" android:id="@+id/protein"/>
+                android:layout_height="wrap_content" android:id="@+id/protein" android:textSize="16sp"/>
         <TextView
                 android:text="Carbs: 75.5 g"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" android:id="@+id/carbs"/>
+                android:layout_height="wrap_content" android:id="@+id/carbs" android:textSize="16sp"/>
         <TextView
                 android:text="Fat: 0.2 g"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" android:id="@+id/fat"/>
+                android:layout_height="wrap_content" android:id="@+id/fat" android:textSize="16sp"/>
     </LinearLayout>
+    <TextView
+            android:text="405"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" android:id="@+id/calories"
+            android:textColor="@color/colorCalories" android:textSize="24sp"
+            android:layout_marginTop="4dp" app:layout_constraintTop_toBottomOf="@+id/mealName"
+            app:layout_constraintEnd_toEndOf="@+id/mealName"/>
+    <TextView
+            android:text="Calories in 100 g"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" android:id="@+id/calories_in_100_g"
+            app:layout_constraintEnd_toEndOf="@+id/calories"
+            app:layout_constraintTop_toBottomOf="@+id/calories"
+            android:textSize="16sp"/>
 </android.support.constraint.ConstraintLayout>

@@ -41,7 +41,7 @@ class NewMealDialogFragment : DialogFragment() {
                     meal.mealName = mealName.text.toString()
                     meal.kcal = kcal.text.toString().toInt()
                     meal.protein = protein.text.toString().toInt()
-                    meal.carbs = carbs.text.toString().toInt()  
+                    meal.carbs = carbs.text.toString().toInt()
                     meal.fat = fat.text.toString().toInt()
 
                     dbRef.child("meals/$currentFirebaseUserId").push().setValue(meal)

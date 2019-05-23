@@ -26,7 +26,7 @@
         <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="textPersonName"
+                android:inputType="number"
                 android:ems="10"
                 android:id="@+id/kcalEditText" android:hint="Podaj kalorie w kcal"/>
         <TextView
@@ -36,7 +36,7 @@
         <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="textPersonName"
+                android:inputType="number"
                 android:ems="10"
                 android:id="@+id/proteinEditText" android:hint="Podaj zawartość białek w 100g"/>
         <TextView
@@ -46,7 +46,7 @@
         <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="textPersonName"
+                android:inputType="number"
                 android:ems="10"
                 android:id="@+id/carbsEditText" android:hint="Podaj zawartość węglowodanów w 100g:"/>
         <TextView
@@ -56,7 +56,7 @@
         <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="textPersonName"
+                android:inputType="number"
                 android:ems="10"
                 android:id="@+id/fatEditText" android:hint="Podaj zawartość tłuszczy w 100g"/>
     </LinearLayout>

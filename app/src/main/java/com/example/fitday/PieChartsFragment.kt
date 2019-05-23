@@ -47,7 +47,7 @@ class PieChartsFragment : Fragment() {
         // Accordion 2
         accordion2.title.text = "Obiad"
         accordion2.kcal.text = "${0}"
-
+        accordion2.addMealButton.setOnClickListener( ::switchToMealsPage )
 
         // Accordion 3
         accordion3.title.text = "Kolacja"
@@ -63,6 +63,12 @@ class PieChartsFragment : Fragment() {
         accordion5.title.text = "Inne"
         accordion5.kcal.text = "${0}"
 
+    }
+
+    private fun switchToMealsPage(view: View) {
+        val mainActivity = context as MainActivity
+        mainActivity.intent.putExtra("page", 2)
+        mainActivity.switchPage()
     }
 
     private fun onAddMealClicked(view: View) {

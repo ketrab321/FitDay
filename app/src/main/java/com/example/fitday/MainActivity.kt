@@ -27,7 +27,6 @@ import com.example.fitday.retrofit.InspirationDTO
 import android.support.v7.app.AppCompatDelegate
 import android.widget.ImageView
 import android.widget.TextView
-import android.widget.Toolbar
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 import com.squareup.picasso.Picasso
@@ -95,6 +94,12 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             override fun onPageScrollStateChanged(p0: Int) {}
             override fun onPageScrolled(p0: Int, p1: Float, p2: Int) {}
             override fun onPageSelected(p0: Int) {
+
+                // Example how to pass data to fragment when swiped on it.
+//                val fragment = pagerAdapter.getItem(viewPager.currentItem)
+//                if (fragment is ExerciseListFragment)
+//                    fragment.boo()
+
                 val bar = findViewById<TabLayout>(R.id.tabs)!!
                 val toolbar = findViewById<android.support.v7.widget.Toolbar>(R.id.toolbar)
                 if (p0 == 2) {
@@ -106,9 +111,13 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 }
             }
         })
-
         tabs.setupWithViewPager(viewPager)
     }
+    fun switchPage() {
+        val newPage = intent.getIntExtra("page", 0)
+        tabs.getTabAt(newPage)?.select()
+    }
+
     private fun requestPermission() {
         ActivityCompat.requestPermissions(this, arrayOf(
             Manifest.permission.READ_EXTERNAL_STORAGE,

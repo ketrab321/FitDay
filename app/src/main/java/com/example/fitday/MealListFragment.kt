@@ -13,7 +13,7 @@ import kotlinx.android.synthetic.main.meal_list.*
 import android.widget.TextView
 import android.widget.Toast
 import com.firebase.ui.database.FirebaseListOptions
-
+import com.google.firebase.auth.FirebaseAuth
 
 
 class MealListFragment : Fragment() {
@@ -25,6 +25,7 @@ class MealListFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         val dbRef = FirebaseDatabase.getInstance().reference
+        val currentFirebaseUserId = FirebaseAuth.getInstance().currentUser?.uid
         addMealButton.setOnClickListener {
             val newFragment = NewMealDialogFragment()
             newFragment.show(fragmentManager, "newMeal")
@@ -34,7 +35,7 @@ class MealListFragment : Fragment() {
          * Create a DatabaseReference to the data; works with standard DatabaseReference methods
          * like limitToLast() and etc.
          */
-        val query = dbRef.child("meals")
+        val query = dbRef.child("meals/$currentFirebaseUserId")
         // Now set the adapter with a given layout
         val options = FirebaseListOptions.Builder<MealModel>()
             .setQuery(query, MealModel::class.java)

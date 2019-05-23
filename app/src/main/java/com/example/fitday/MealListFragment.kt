@@ -46,8 +46,16 @@ class MealListFragment : Fragment() {
             override fun populateView(v: View, model: MealModel, position: Int) {
                 val textView = v.findViewById<TextView>(R.id.mealName)
                 textView.text = model.mealName
+
             }
         }
+
+        listView.setOnItemLongClickListener {_, _, index, _ ->
+            val deleteQuery = adapter.getRef(index)
+            deleteQuery.removeValue()
+            true
+        }
+
         listView.adapter = adapter
     }
 

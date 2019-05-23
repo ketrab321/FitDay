@@ -8,9 +8,11 @@ import android.os.Bundle
 import android.os.Handler
 import android.support.design.widget.Snackbar
 import android.support.design.widget.NavigationView
+import android.support.design.widget.TabLayout
 import android.support.v4.app.ActivityCompat
 import android.support.v4.content.ContextCompat
 import android.support.v4.view.GravityCompat
+import android.support.v4.view.ViewPager
 import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
@@ -25,6 +27,7 @@ import com.example.fitday.retrofit.InspirationDTO
 import android.support.v7.app.AppCompatDelegate
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toolbar
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 import com.squareup.picasso.Picasso
@@ -89,6 +92,22 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         val pagerAdapter = MainTabsPagerAdapter(supportFragmentManager)
         viewPager.adapter = pagerAdapter
         viewPager.offscreenPageLimit = 2
+        // Change theme color when exercises page is active
+        viewPager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
+            override fun onPageScrollStateChanged(p0: Int) {}
+            override fun onPageScrolled(p0: Int, p1: Float, p2: Int) {}
+            override fun onPageSelected(p0: Int) {
+                val bar = findViewById<TabLayout>(R.id.tabs)!!
+                val toolbar = findViewById<android.support.v7.widget.Toolbar>(R.id.toolbar)
+                if (p0 == 2) {
+                    bar.setBackgroundColor(ContextCompat.getColor(baseContext, R.color.secondaryBar))
+                    toolbar.setBackgroundColor(ContextCompat.getColor(baseContext, R.color.secondaryBar))
+                } else {
+                    bar.setBackgroundColor(ContextCompat.getColor(baseContext, R.color.primaryBar))
+                    toolbar.setBackgroundColor(ContextCompat.getColor(baseContext, R.color.primaryBar))
+                }
+            }
+        })
 
         tabs.setupWithViewPager(viewPager)
     }

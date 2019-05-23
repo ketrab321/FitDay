@@ -1,10 +1,10 @@
 package com.example.fitday
 
 import android.graphics.Color
+import android.graphics.PorterDuff
 import android.graphics.Typeface
 import android.os.Bundle
 import android.support.v4.app.Fragment
-import android.support.v4.app.FragmentActivity
 import android.support.v4.content.res.ResourcesCompat
 import android.text.Spannable
 import android.text.SpannableStringBuilder
@@ -15,6 +15,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ListView
 import kotlinx.android.synthetic.main.accordion_item.view.*
+import kotlinx.android.synthetic.main.activity_main.view.*
 import kotlinx.android.synthetic.main.pie_charts.*
 import lecho.lib.hellocharts.model.PieChartData
 import lecho.lib.hellocharts.model.SliceValue
@@ -36,29 +37,31 @@ class PieChartsFragment : Fragment() {
 
         lateinit var adapter: AccordionMealAdapter
 
-        // Accordion 1
-        accordion1.title.text = "Śniadanie"
-        accordion1.kcal.text = "${0}"
-        val meals = arrayListOf("schabowy z frytkami", "rosół", "mizeria")
+        // Accordion 1 (Exercises)
+        accordion1.title.text = "Ćwiczenia"
+        accordion1.kcal.text = "${-250}"
+        accordion1.addButton.text = "Dodaj ćwiczenie"
+        accordion1.addButton.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_add_button_exercise, 0, 0, 0)
 
-        adapter = AccordionMealAdapter(activity!!, R.layout.accordion_meal_item, meals, accordion1.mealsList)
-        accordion1.mealsList.adapter = adapter
-        accordion1.addMealButton.setOnClickListener( ::onAddMealClicked )
+        accordion1.addButton.setOnClickListener{ switchToPage(2) }
 
         // Accordion 2
-        accordion2.title.text = "Obiad"
+        accordion2.title.text = "Śniadanie"
         accordion2.kcal.text = "${0}"
-        accordion2.addMealButton.setOnClickListener( ::switchToMealsPage )
+        val meals = arrayListOf("schabowy z frytkami", "rosół", "mizeria")
+
+        adapter = AccordionMealAdapter(activity!!, R.layout.accordion_meal_item, meals, accordion2.mealsList)
+        accordion2.mealsList.adapter = adapter
+        accordion2.addButton.setOnClickListener( ::onAddMealClicked )
 
         // Accordion 3
-        accordion3.title.text = "Kolacja"
+        accordion3.title.text = "Obiad"
         accordion3.kcal.text = "${0}"
-
+        accordion3.addButton.setOnClickListener{ switchToPage(1, 2)}
 
         // Accordion 4
-        accordion4.title.text = "Przekąski"
+        accordion4.title.text = "Kolacja"
         accordion4.kcal.text = "${0}"
-
 
         // Accordion 5
         accordion5.title.text = "Inne"
@@ -66,9 +69,10 @@ class PieChartsFragment : Fragment() {
 
     }
 
-    private fun switchToMealsPage(view: View) {
+    private fun switchToPage(pageId: Int, requestCode: Int = 0) {
         val mainActivity = context as MainActivity
-        mainActivity.intent.putExtra("page", 2)
+        mainActivity.intent.putExtra("page", pageId)
+        mainActivity.intent.putExtra("code", requestCode)
         mainActivity.switchPage()
     }
 

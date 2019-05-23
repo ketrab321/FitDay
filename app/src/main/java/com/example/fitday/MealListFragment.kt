@@ -18,7 +18,6 @@ import kotlinx.android.synthetic.main.meal_list.*
 import android.widget.TextView
 import com.firebase.ui.database.FirebaseListOptions
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.collection.LLRBNode
 
 class MealListFragment : Fragment() {
     lateinit var adapter: FirebaseListAdapter<MealModel>
@@ -30,7 +29,7 @@ class MealListFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
         val dbRef = FirebaseDatabase.getInstance().reference
         val currentFirebaseUserId = FirebaseAuth.getInstance().currentUser?.uid
-        addMealButton.setOnClickListener {
+        addButton.setOnClickListener {
             val newFragment = NewMealDialogFragment()
             newFragment.show(fragmentManager, "newMeal")
         }

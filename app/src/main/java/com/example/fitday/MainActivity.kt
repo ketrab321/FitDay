@@ -105,11 +105,11 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 val bar = findViewById<TabLayout>(R.id.tabs)!!
                 val toolbar = findViewById<android.support.v7.widget.Toolbar>(R.id.toolbar)
                 if (p0 == 2) {
-                    bar.setBackgroundColor(ContextCompat.getColor(baseContext, R.color.secondaryBar))
-                    toolbar.setBackgroundColor(ContextCompat.getColor(baseContext, R.color.secondaryBar))
+                    bar.setBackgroundColor(ContextCompat.getColor(baseContext, R.color.colorPrimaryDark))
+                    toolbar.setBackgroundColor(ContextCompat.getColor(baseContext, R.color.colorPrimaryDark))
                 } else {
-                    bar.setBackgroundColor(ContextCompat.getColor(baseContext, R.color.primaryBar))
-                    toolbar.setBackgroundColor(ContextCompat.getColor(baseContext, R.color.primaryBar))
+                    bar.setBackgroundColor(ContextCompat.getColor(baseContext, R.color.colorPrimary))
+                    toolbar.setBackgroundColor(ContextCompat.getColor(baseContext, R.color.colorPrimary))
                 }
             }
         })

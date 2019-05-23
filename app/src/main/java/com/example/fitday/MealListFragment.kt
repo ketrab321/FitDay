@@ -16,15 +16,10 @@ import com.firebase.ui.database.FirebaseListOptions
 
 
 
-class MealListFragment : Fragment(), NewMealDialogFragment.NewMealDialogListener {
-
+class MealListFragment : Fragment() {
     lateinit var adapter: FirebaseListAdapter<MealModel>
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.meal_list, container, false)
-    }
-
-    override fun onDialogPositiveClick(dialog: NewMealDialogFragment) {
-        Log.d(dialog.meal?.mealName, "asdf")
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -33,11 +28,7 @@ class MealListFragment : Fragment(), NewMealDialogFragment.NewMealDialogListener
         addMealButton.setOnClickListener {
             val newFragment = NewMealDialogFragment()
             newFragment.show(fragmentManager, "newMeal")
-//            val mealModel = MealModel()
-//            mealModel.mealName = "xdddd"
-//            dbRef.child("meals").push().setValue(mealModel)
         }
-
 
         /*
          * Create a DatabaseReference to the data; works with standard DatabaseReference methods

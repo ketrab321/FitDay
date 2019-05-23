@@ -47,12 +47,14 @@ var PPM = 0.0f
 private const val TIME_OUT = 800
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
-    val database = FirebaseDatabase.getInstance().setPersistenceEnabled(true)
+    val database = FirebaseDatabase.getInstance()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
+
+        database.setPersistenceEnabled(true)
 
         Handler().postDelayed(
             {

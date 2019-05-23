@@ -1,9 +1,7 @@
 package com.example.fitday
 
 import android.os.Bundle
-import android.support.v4.app.DialogFragment
 import android.support.v4.app.Fragment
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,7 +9,6 @@ import com.firebase.ui.database.FirebaseListAdapter
 import com.google.firebase.database.FirebaseDatabase
 import kotlinx.android.synthetic.main.meal_list.*
 import android.widget.TextView
-import android.widget.Toast
 import com.firebase.ui.database.FirebaseListOptions
 import com.google.firebase.auth.FirebaseAuth
 
@@ -39,7 +36,7 @@ class MealListFragment : Fragment() {
         // Now set the adapter with a given layout
         val options = FirebaseListOptions.Builder<MealModel>()
             .setQuery(query, MealModel::class.java)
-            .setLayout(R.layout.temp_meal_item)
+            .setLayout(R.layout.meal_item)
             .build()
 
         adapter = object : FirebaseListAdapter<MealModel>(options) {

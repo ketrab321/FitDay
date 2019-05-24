@@ -7,7 +7,7 @@
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
     <string name="action_change_body_parameters">Change body parameters</string>
-    <string name="sex_text_view">Sex</string>
+    <string name="sex_text_view">Choose your gender</string>
     <string name="male_button">male</string>
     <string name="female_button">female</string>
     <string name="height_text_view">Height</string>
@@ -15,5 +15,6 @@
     <string name="age_text_view">Age</string>
     <string name="confirm_button">Confirm</string>
     <string name="title_activity_gallery">Gallery</string>
+    <string name="add_meal_button">Dodaj</string>
 
 </resources>

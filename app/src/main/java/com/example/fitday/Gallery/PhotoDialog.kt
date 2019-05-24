@@ -3,9 +3,11 @@ package com.example.fitday.Gallery
 import android.app.Dialog
 import android.content.Context
 import android.graphics.BitmapFactory
+import android.net.Uri
 import android.os.Bundle
 import android.view.View
 import android.view.Window
+import com.bumptech.glide.Glide
 import com.example.fitday.R
 import com.felipecsl.gifimageview.library.GifImageView
 import kotlinx.android.synthetic.main.photo_dialog.*
@@ -21,8 +23,10 @@ class PhotoDialog(context : Context, _imgFile: File,_date : String ) : Dialog(co
         super.onCreate(savedInstanceState)
         requestWindowFeature(Window.FEATURE_NO_TITLE)
         setContentView(R.layout.photo_dialog)
-        val myBitmap = BitmapFactory.decodeFile(imageFile.getAbsolutePath().toString() )
-        fullSizeImage.setImageBitmap(myBitmap)
+        Glide.with(context)
+            .asBitmap()
+            .load(Uri.fromFile(imageFile))
+            .into(fullSizeImage)
         dialog_date.append(date)
     }
 

@@ -5,6 +5,7 @@ import android.app.Dialog
 import android.content.Context
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
+import android.graphics.drawable.Drawable
 import android.media.ThumbnailUtils
 import android.view.LayoutInflater
 import android.view.View
@@ -15,6 +16,9 @@ import android.widget.TextView
 import com.example.fitday.R
 import android.net.Uri
 import android.support.v4.content.FileProvider
+import android.transition.Transition
+import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
 import com.example.fitday.BuildConfig
 import java.io.File
 import java.lang.Math.pow
@@ -61,9 +65,10 @@ class GalleryAdapter(private var activity: Activity, private var items: ArrayLis
             viewHolder.date?.text = date
 
         //val myBitmap = BitmapFactory.decodeFile(imgFile.getAbsolutePath().toString() )
-        val myBitmap2 = getPreview(items[position])
-
-        viewHolder.image?.setImageBitmap(myBitmap2)
+        Glide.with(activity)
+            .asBitmap()
+            .load(Uri.fromFile(imgFile))
+            .into(viewHolder.image!!)
 
         view!!.setOnLongClickListener{view1 ->
             imgFile.delete()
@@ -79,24 +84,24 @@ class GalleryAdapter(private var activity: Activity, private var items: ArrayLis
         return view as View
     }
 
-    fun getPreview(uri: String): Bitmap? {
-        val image = File(uri)
-
-        val bounds = BitmapFactory.Options()
-        bounds.inJustDecodeBounds = true
-        BitmapFactory.decodeFile(image.getPath(), bounds)
-        if (bounds.outWidth == -1 || bounds.outHeight == -1)
-            return null
-
-        val originalSize = if (bounds.outHeight > bounds.outWidth)
-            bounds.outHeight
-        else
-            bounds.outWidth
-
-        val opts = BitmapFactory.Options()
-        opts.inSampleSize = originalSize / THUMBNAIL_SIZE
-        return BitmapFactory.decodeFile(image.getPath(), opts)
-    }
+//    fun getPreview(uri: String): Bitmap? {
+//        val image = File(uri)
+//
+//        val bounds = BitmapFactory.Options()
+//        bounds.inJustDecodeBounds = true
+//        BitmapFactory.decodeFile(image.getPath(), bounds)
+//        if (bounds.outWidth == -1 || bounds.outHeight == -1)
+//            return null
+//
+//        val originalSize = if (bounds.outHeight > bounds.outWidth)
+//            bounds.outHeight
+//        else
+//            bounds.outWidth
+//
+//        val opts = BitmapFactory.Options()
+//        opts.inSampleSize = originalSize / THUMBNAIL_SIZE
+//        return BitmapFactory.decodeFile(image.getPath(), opts)
+//    }
     override fun getItem(i: Int): String {
         return items[i]
     }

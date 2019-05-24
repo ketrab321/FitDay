@@ -57,7 +57,7 @@ class Gallery : AppCompatActivity() {
                     loadAllImages()
                 }
             }, TIME_OUT.toLong())
-
+        this.window.setBackgroundDrawableResource(R.drawable.fitness__silownia_007_kobieta__pompki)
         adapter = GalleryAdapter(this, imagePaths)
         gallery.adapter = adapter
         loadAllImages()
@@ -157,7 +157,8 @@ class Gallery : AppCompatActivity() {
     {
         imagePaths.clear()
         getAllShownImagesPath(imagePaths)
-
+        imagePaths.sort()
+        imagePaths.reverse()
     }
     @Throws(IOException::class)
     private fun CreateFile() : File{

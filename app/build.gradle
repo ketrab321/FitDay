@@ -35,6 +35,9 @@ dependencies {
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
 
     implementation 'com.squareup.picasso:picasso:2.71828'
+    implementation 'com.felipecsl:gifimageview:2.1.0'
+
+    implementation 'com.github.bumptech.glide:glide:4.8.0'
 
     implementation 'com.squareup.retrofit2:retrofit:2.5.0'
     implementation 'com.squareup.retrofit2:converter-gson:2.5.0'
@@ -48,6 +51,7 @@ dependencies {
     implementation 'com.google.firebase:firebase-core:16.0.9'
     implementation 'com.google.firebase:firebase-auth:17.0.0'
     implementation 'com.google.firebase:firebase-database:17.0.0'
+    implementation 'com.firebaseui:firebase-ui-database:5.0.0'
 
     //play service auth
     implementation 'com.google.android.gms:play-services-auth:16.0.1'

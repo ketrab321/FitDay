@@ -17,13 +17,13 @@
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
-                android:background="?attr/colorPrimary"
+                android:background="@color/primaryBar"
                 app:popupTheme="@style/AppTheme.PopupOverlay"/>
 
         <android.support.design.widget.TabLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" android:id="@+id/tabs"
-                android:background="@color/colorCalories">
+                android:background="@color/primaryBar">
 
             <android.support.design.widget.TabItem
                     android:layout_width="wrap_content"

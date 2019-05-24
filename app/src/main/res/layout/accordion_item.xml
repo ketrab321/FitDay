@@ -34,7 +34,7 @@
                     android:layout_width="wrap_content"
                     android:layout_centerVertical="true"
                     android:text="Śniadanie"
-                    android:textColor="#3E3E3E" android:textSize="20sp" android:layout_toEndOf="@+id/headerIndicator"
+                    android:textColor="#3E3E3E" android:textSize="22sp" android:layout_toEndOf="@+id/headerIndicator"
                     android:layout_marginStart="8dp" android:id="@+id/title"/>
 
             <TextView

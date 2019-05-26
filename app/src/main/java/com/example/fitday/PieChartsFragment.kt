@@ -10,10 +10,16 @@ import android.text.Spannable
 import android.text.SpannableStringBuilder
 import android.text.style.ForegroundColorSpan
 import android.text.style.StyleSpan
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ListView
+import android.widget.TextView
+import com.firebase.ui.database.FirebaseListAdapter
+import com.firebase.ui.database.FirebaseListOptions
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.FirebaseDatabase
 import kotlinx.android.synthetic.main.accordion_item.view.*
 import kotlinx.android.synthetic.main.activity_main.view.*
 import kotlinx.android.synthetic.main.pie_charts.*
@@ -21,6 +27,9 @@ import lecho.lib.hellocharts.model.PieChartData
 import lecho.lib.hellocharts.model.SliceValue
 
 class PieChartsFragment : Fragment() {
+
+    lateinit var adapter: FirebaseListAdapter<MealModel>
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.pie_charts, container, false)
     }
@@ -35,7 +44,7 @@ class PieChartsFragment : Fragment() {
 
     private fun setupAccordion() {
 
-        lateinit var adapter: AccordionMealAdapter
+//        lateinit var adapter: AccordionMealAdapter
 
         // Accordion 1 (Exercises)
         accordion1.title.text = "Ćwiczenia"
@@ -48,17 +57,28 @@ class PieChartsFragment : Fragment() {
         // Accordion 2
         accordion2.title.text = "Śniadanie"
         accordion2.kcal.text = "${0}"
-        val meals = arrayListOf(
-            MealModel("Schabowy z frytkami", 400, 40, 20, 10),
-            MealModel("Fryteczky", 450, 20, 20 ,10),
-            MealModel("Słoik majonezu",999, 1, 1, 99 )
-        )
 
-//        val meals = arrayListOf("shcabowy z frytkami", "ziemniaki", "pierogi ruskie")
+        val dbRef = FirebaseDatabase.getInstance().reference
+        val currentFirebaseUserId = FirebaseAuth.getInstance().currentUser?.uid
 
-        adapter = AccordionMealAdapter(activity!!, R.layout.accordion_meal_item, meals, accordion2.mealsList)
+        val query = dbRef.child("meals/$currentFirebaseUserId")
+
+        val options = FirebaseListOptions.Builder<MealModel>()
+            .setQuery(query, MealModel::class.java)
+            .setLayout(R.layout.accordion_meal_item)
+            .build()
+
+        adapter = object : FirebaseListAdapter<MealModel>(options) {
+            override fun populateView(v: View, model: MealModel, position: Int) {
+                val mealName = v.findViewById<TextView>(R.id.mealName)
+                mealName.text = model.mealName
+                Log.d("omg", "populateView: ${model.mealName}")
+            }
+        }
         accordion2.mealsList.adapter = adapter
-        accordion2.addButton.setOnClickListener( ::onAddMealClicked )
+        adapter.startListening()
+
+        //accordion2.addButton.setOnClickListener( ::onAddMealClicked )
 
         // Accordion 3
         accordion3.title.text = "Obiad"
@@ -86,7 +106,7 @@ class PieChartsFragment : Fragment() {
         val mealsList = view.rootView.findViewById<ListView>(R.id.mealsList)
         val adapter = mealsList.adapter as AccordionMealAdapter
 
-        adapter.addMeal(MealModel("Łzy studentów", 0, 10, 5, 2))
+        //adapter.addMeal(MealModel("Łzy studentów", 0, 10, 5, 2))
     }
 
 

@@ -9,6 +9,7 @@ import android.text.Spannable
 import android.text.SpannableStringBuilder
 import android.text.style.ForegroundColorSpan
 import android.text.style.StyleSpan
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -48,6 +49,8 @@ class MealListFragment : Fragment() {
 
         adapter = object : FirebaseListAdapter<MealModel>(options) {
             override fun populateView(v: View, model: MealModel, position: Int) {
+
+                Log.d("omg", "Piotrkowy populateView: ${model.mealName}")
 
                 // Helper function for formatting text
                 fun SpannableStringBuilder.append(str: String, color: Int, style: Any?) {
@@ -113,11 +116,12 @@ class MealListFragment : Fragment() {
         }
 
         listView.adapter = adapter
+        adapter.startListening()
     }
 
     override fun onStart() {
         super.onStart()
-        adapter.startListening()
+//        adapter.startListening()
     }
 
     override fun onStop() {

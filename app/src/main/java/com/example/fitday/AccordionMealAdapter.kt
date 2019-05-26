@@ -47,7 +47,7 @@ class AccordionMealAdapter( o : FirebaseListOptions<MealModel>,
 
         val caloriesColor = ResourcesCompat.getColor(context.resources, R.color.colorCalories, null)
         label.append("Calories: ")
-        label.append("${model.kcal}", caloriesColor, bold)
+        label.append("${model.kcal!! * model.weight!! / 100}", caloriesColor, bold)
         calories.text = label
 
         label = SpannableStringBuilder()
@@ -77,10 +77,11 @@ class AccordionMealAdapter( o : FirebaseListOptions<MealModel>,
 
         for( i in 0 until count ) {
             val item = getItem(i)
-            totalCalories += item.kcal ?: 0
-            totalCarbs += item.carbs ?: 0
-            totalFat += item.fat ?: 0
-            totalProtein += item.protein ?: 0
+            val weight = item.weight!!
+            totalCalories += weight * (item.kcal ?: 0) / 100
+            totalCarbs += weight * (item.carbs ?: 0) / 100
+            totalFat += weight * (item.fat ?: 0) / 100
+            totalProtein += weight * (item.protein ?: 0) / 100
         }
 
         label.text = totalCalories.toString()

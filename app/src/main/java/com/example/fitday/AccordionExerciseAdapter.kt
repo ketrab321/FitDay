@@ -69,7 +69,7 @@ class AccordionExerciseAdapter( o : FirebaseListOptions<ExerciseModel>,
 
         for( i in 0 until count ) {
             val item = getItem(i)
-            totalCalories -= item.kcal ?: 0
+            totalCalories -= (item.kcal ?: 0) * (item.reps ?: 0)
         }
 
         label.text = totalCalories.toString()

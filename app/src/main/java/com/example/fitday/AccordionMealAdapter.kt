@@ -54,6 +54,12 @@ class AccordionMealAdapter( o : FirebaseListOptions<MealModel>,
         label.append("Weight: ")
         label.append("${model.weight} g", Color.BLACK, bold)
         weight.text = label
+
+        v.setOnLongClickListener {
+            val deleteQuery = getRef(position)
+            deleteQuery.removeValue()
+            true
+        }
     }
 
     override fun onDataChanged() {

@@ -42,7 +42,7 @@
                     <TextView
                             android:text="23"
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content" android:id="@+id/chartLabel"
+                            android:layout_height="wrap_content" android:id="@+id/BMRLabel"
                             app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="8dp"
                             app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="8dp"
                             app:layout_constraintBottom_toBottomOf="parent"
@@ -50,13 +50,13 @@
                             android:textSize="48sp" android:textColor="#000000" android:layout_marginBottom="8dp"
                             app:layout_constraintHorizontal_bias="0.498" app:layout_constraintVertical_bias="0.371"/>
                     <TextView
-                            android:text="% GDA"
+                            android:text="% BMR"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content" android:id="@+id/gda"
-                            app:layout_constraintEnd_toEndOf="@+id/chartLabel"
-                            app:layout_constraintStart_toStartOf="@+id/chartLabel"
-                            app:layout_constraintTop_toBottomOf="@+id/chartLabel" android:layout_marginTop="-8dp"
-                            app:layout_constraintBottom_toBottomOf="@+id/chartLabel"/>
+                            app:layout_constraintEnd_toEndOf="@+id/BMRLabel"
+                            app:layout_constraintStart_toStartOf="@+id/BMRLabel"
+                            app:layout_constraintTop_toBottomOf="@+id/BMRLabel" android:layout_marginTop="-8dp"
+                            app:layout_constraintBottom_toBottomOf="@+id/BMRLabel"/>
                 </android.support.constraint.ConstraintLayout>
             </LinearLayout>
             <LinearLayout
@@ -110,7 +110,7 @@
                         android:layout_height="0.5dp"
                         android:background="#CCC"/>
                 <include layout="@layout/accordion_item" android:id="@+id/accordion2"
-                         android:layout_width="match_parent" android:layout_height="300dp"
+                         android:layout_width="match_parent" android:layout_height="wrap_content"
                          android:layout_weight="1"/>
                 <View
                         android:layout_width="match_parent"

@@ -5,5 +5,6 @@ class MealModel(
     var kcal: Int? = null,
     var protein: Int? = null,
     var carbs: Int? = null,
-    var fat: Int? = null
+    var fat: Int? = null,
+    var weight: Int? = null
 )

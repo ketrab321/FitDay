@@ -50,8 +50,6 @@ class MealListFragment : Fragment() {
         adapter = object : FirebaseListAdapter<MealModel>(options) {
             override fun populateView(v: View, model: MealModel, position: Int) {
 
-                Log.d("omg", "Piotrkowy populateView: ${model.mealName}")
-
                 // Helper function for formatting text
                 fun SpannableStringBuilder.append(str: String, color: Int, style: Any?) {
                     val start = length

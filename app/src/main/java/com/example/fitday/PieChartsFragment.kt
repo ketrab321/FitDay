@@ -48,7 +48,13 @@ class PieChartsFragment : Fragment() {
         // Accordion 2
         accordion2.title.text = "Śniadanie"
         accordion2.kcal.text = "${0}"
-        val meals = arrayListOf("schabowy z frytkami", "rosół", "mizeria")
+        val meals = arrayListOf(
+            MealModel("Schabowy z frytkami", 400, 40, 20, 10),
+            MealModel("Fryteczky", 450, 20, 20 ,10),
+            MealModel("Słoik majonezu",999, 1, 1, 99 )
+        )
+
+//        val meals = arrayListOf("shcabowy z frytkami", "ziemniaki", "pierogi ruskie")
 
         adapter = AccordionMealAdapter(activity!!, R.layout.accordion_meal_item, meals, accordion2.mealsList)
         accordion2.mealsList.adapter = adapter
@@ -80,7 +86,7 @@ class PieChartsFragment : Fragment() {
         val mealsList = view.rootView.findViewById<ListView>(R.id.mealsList)
         val adapter = mealsList.adapter as AccordionMealAdapter
 
-        adapter.addMeal("Łzy studentów")
+        adapter.addMeal(MealModel("Łzy studentów", 0, 10, 5, 2))
     }
 
 

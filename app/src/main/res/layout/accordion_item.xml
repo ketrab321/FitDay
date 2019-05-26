@@ -58,7 +58,7 @@
 
     <com.github.florent37.expansionpanel.ExpansionLayout
             android:id="@+id/expansionLayout"
-            app:expansion_expanded="true"
+            app:expansion_expanded="false"
             android:layout_height="wrap_content"
             android:layout_width="match_parent">
 

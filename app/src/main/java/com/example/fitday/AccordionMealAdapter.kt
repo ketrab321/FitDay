@@ -12,22 +12,24 @@ import android.widget.TextView
 class AccordionMealAdapter (
     private val context: Activity,
     private val resource: Int,
-    private val meals: ArrayList<String>,
+    private val meals: ArrayList<MealModel>,
     private val listView: ListView
 )
-    : ArrayAdapter<String>(context, resource, meals),
+    : ArrayAdapter<MealModel>(context, resource, meals),
     View.OnClickListener{
 
     private class MealViewHolder {
-        lateinit var item: String
+        lateinit var item: MealModel
         lateinit var mealName: TextView
+        lateinit var calories: TextView
+        lateinit var weight: TextView
     }
 
     init {
         getTotalHeightOfListView(listView)
     }
 
-    fun addMeal(item: String) {
+    fun addMeal(item: MealModel) {
         meals.add( item )
         notifyDataSetChanged()
     }
@@ -57,15 +59,16 @@ class AccordionMealAdapter (
             viewHolder = MealViewHolder()
 
             viewHolder.mealName = view.findViewById(R.id.mealName)!!
-            view.tag = viewHolder
 
+
+            view.tag = viewHolder
             view.setOnClickListener( ::onClick )
         } else {
             viewHolder = view.tag as MealViewHolder
         }
 
         viewHolder.item = item
-        viewHolder.mealName.text = item
+        viewHolder.mealName.text = item.mealName
 
         return view
     }

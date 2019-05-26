@@ -24,7 +24,7 @@
                     android:layout_height="wrap_content" android:id="@+id/mealText"/>
             <Spinner
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" android:id="@+id/spinner" android:entries="@array/mealTimes"/>
+                    android:layout_height="wrap_content" android:id="@+id/mealTime" android:entries="@array/mealTimes"/>
         </LinearLayout>
         <LinearLayout
                 android:orientation="horizontal"
@@ -38,7 +38,7 @@
             <EditText
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:inputType="numberDecimal"
+                    android:inputType="number"
                     android:ems="10"
                     android:id="@+id/weightInput" android:layout_weight="1"/>
             <TextView

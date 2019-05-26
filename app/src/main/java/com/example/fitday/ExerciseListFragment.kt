@@ -77,6 +77,15 @@ class ExerciseListFragment : Fragment() {
                 label.append("Calories burnt in ")
                 label.append("one minute", Color.BLACK, bold)
                 caloriesIn1minute.text = label
+
+                v.setOnClickListener {
+                    val newFragment = AddExerciseDialogFragment()
+                    val args = Bundle()
+                    args.putString("exerciseName", model.exerciseName)
+                    args.putInt("kcal", model.kcal!!)
+                    newFragment.arguments = args
+                    newFragment.show(fragmentManager, "addExercise")
+                }
             }
         }
 

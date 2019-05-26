@@ -82,17 +82,20 @@ class PieChartsFragment : Fragment() {
         val today = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"))
 
         // Accordion 2
-        setupAccordion(accordion2, "Breakfast", "breakfast", "daily/$currentFirebaseUserId/breakfast")
+        setupAccordion(accordion2, "Breakfast", "breakfast",
+            "daily/$currentFirebaseUserId/$today/breakfast")
 
         // Accordion 3
-        setupAccordion(accordion3, "Dinner", "dinner", "daily/zSxYOC222OdlQS3A2rPD2yUJI543/$today/dinner")
+        setupAccordion(accordion3, "Dinner", "dinner",
+            "daily/$currentFirebaseUserId/$today/dinner")
 
         // Accordion 4
-        setupAccordion(accordion4, "Supper", "supper", "supeprendpoint")
+        setupAccordion(accordion4, "Supper", "supper",
+            "daily/$currentFirebaseUserId/$today/supper")
 
         // Accordion 5
-        setupAccordion(accordion5, "Other", "other", "otherendpoint")
-
+        setupAccordion(accordion5, "Other", "other",
+            "daily/$currentFirebaseUserId/$today/other")
     }
 
     private fun switchToPage(pageId: Int, from: String? = null) {

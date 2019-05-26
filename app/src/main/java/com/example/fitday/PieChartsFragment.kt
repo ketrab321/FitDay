@@ -1,5 +1,6 @@
 package com.example.fitday
 
+import android.content.Context
 import android.database.DataSetObserver
 import android.graphics.Color
 import android.graphics.Typeface
@@ -120,8 +121,7 @@ class PieChartsFragment : Fragment() {
         //adapter.addMeal(MealModel("Łzy studentów", 0, 10, 5, 2))
     }
 
-    private fun updatePieLabels() {
-
+    fun updatePieLabels() {
         BMRLabel.text = "${totalCalories*100/BMR}"
 
         fun SpannableStringBuilder.append(str: String, color: Int, style: Any?) {

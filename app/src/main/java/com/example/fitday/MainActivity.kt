@@ -50,7 +50,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 //Version: 0.1
 const val CHANGE_BODY_PARAMETERS_REQUEST_CODE = 1212
 const val TOGGLE_QUOTE_CODE = 2221
-var BMR = 0.0f
+var BMR = 0
 private const val TIME_OUT = 600
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
@@ -58,6 +58,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     val database = FirebaseDatabase.getInstance()
     lateinit var mGoogleSignInClient: GoogleSignInClient
     private lateinit var firebaseAuth: FirebaseAuth
+    private lateinit var pagerAdapter: MainTabsPagerAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -100,7 +101,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         nav_view.setNavigationItemSelectedListener(this)
 
-        val pagerAdapter = MainTabsPagerAdapter(supportFragmentManager)
+        pagerAdapter = MainTabsPagerAdapter(supportFragmentManager)
         viewPager.adapter = pagerAdapter
         viewPager.offscreenPageLimit = 2
         // Change theme color when exercises page is active
@@ -126,10 +127,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             }
         })
         tabs.setupWithViewPager(viewPager)
-
-
-
     }
+
     fun switchPage() {
         val newPage = intent.getIntExtra("page", 0)
         tabs.getTabAt(newPage)?.select()
@@ -167,9 +166,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     override fun onStart() {
         super.onStart()
         sharedPref = this.getPreferences(Context.MODE_PRIVATE)
-        BMR = sharedPref.getFloat("BMR",0.0f)
-        Log.d("loadBMR","$BMR")
-
     }
 
     override fun onResume() {
@@ -228,11 +224,14 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         if (requestCode == CHANGE_BODY_PARAMETERS_REQUEST_CODE) {
             if (resultCode == Activity.RESULT_OK) {
-                val resultBMR = data!!.getFloatExtra("BMR",0.0f)
+                val resultBMR = data!!.getIntExtra("BMR",0)
                 BMR = resultBMR
-                sharedPref.edit().putFloat("BMR",BMR).apply()
+                sharedPref.edit().putInt("BMR",BMR.toInt()).apply()
                 Log.d("savedBMR","$BMR")
-                Toast.makeText(this,"Return $resultBMR",Toast.LENGTH_SHORT).show()
+                Toast.makeText(this,"New BMR $resultBMR",Toast.LENGTH_SHORT).show()
+                val pieChartsFragment = pagerAdapter.getItem(0) as PieChartsFragment
+                pieChartsFragment.BMR = BMR
+                pieChartsFragment.updatePieLabels()
             }
             if (resultCode == Activity.RESULT_CANCELED) {
                 //Write your code if there's no result

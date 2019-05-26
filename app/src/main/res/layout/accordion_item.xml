@@ -58,7 +58,7 @@
 
     <com.github.florent37.expansionpanel.ExpansionLayout
             android:id="@+id/expansionLayout"
-            app:expansion_expanded="true"
+            app:expansion_expanded="false"
             android:layout_height="wrap_content"
             android:layout_width="match_parent">
 
@@ -72,7 +72,7 @@
                     android:layout_height="0.5dp"
                     android:background="#CCC"/>
             <ListView android:layout_width="match_parent"
-                      android:layout_height="match_parent"
+                      android:layout_height="wrap_content"
                       android:id="@+id/mealsList" android:dividerHeight="0.5dp" android:divider="#CCC">
 
             </ListView>
@@ -88,7 +88,7 @@
                         android:text="Dodaj produkt"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:id="@+id/addMealButton"
+                        android:id="@+id/addButton"
                         android:background="@android:color/transparent"
                         android:drawableLeft="@drawable/ic_add_button"
                         android:textSize="16sp"

@@ -9,6 +9,7 @@ import android.text.Spannable
 import android.text.SpannableStringBuilder
 import android.text.style.ForegroundColorSpan
 import android.text.style.StyleSpan
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -18,7 +19,6 @@ import kotlinx.android.synthetic.main.meal_list.*
 import android.widget.TextView
 import com.firebase.ui.database.FirebaseListOptions
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.collection.LLRBNode
 
 class MealListFragment : Fragment() {
     lateinit var adapter: FirebaseListAdapter<MealModel>
@@ -30,7 +30,7 @@ class MealListFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
         val dbRef = FirebaseDatabase.getInstance().reference
         val currentFirebaseUserId = FirebaseAuth.getInstance().currentUser?.uid
-        addMealButton.setOnClickListener {
+        addButton.setOnClickListener {
             val newFragment = NewMealDialogFragment()
             newFragment.show(fragmentManager, "newMeal")
         }
@@ -126,11 +126,12 @@ class MealListFragment : Fragment() {
         }
 
         listView.adapter = adapter
+        adapter.startListening()
     }
 
     override fun onStart() {
         super.onStart()
-        adapter.startListening()
+//        adapter.startListening()
     }
 
     override fun onStop() {

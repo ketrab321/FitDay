@@ -14,17 +14,14 @@ import com.firebase.ui.database.FirebaseListAdapter
 import com.firebase.ui.database.FirebaseListOptions
 
 
-class AccordionMealAdapter( o : FirebaseListOptions<MealModel>,
+class AccordionMealAdapter( o : FirebaseListOptions<ExerciseModel>,
                             private val accordion: View,
                             private val context: PieChartsFragment)
-    : FirebaseListAdapter<MealModel>(o) {
+    : FirebaseListAdapter<ExerciseModel>(o) {
 
     var totalCalories = 0
-    var totalProtein = 0
-    var totalCarbs = 0
-    var totalFat = 0
 
-    override fun populateView(v: View, model: MealModel, position: Int) {
+    override fun populateView(v: View, model: ExerciseModel, position: Int) {
 
         // Helper function for formatting text
         fun SpannableStringBuilder.append(str: String, color: Int, style: Any?) {
@@ -39,21 +36,22 @@ class AccordionMealAdapter( o : FirebaseListOptions<MealModel>,
         val bold = StyleSpan(Typeface.BOLD)
         var label = SpannableStringBuilder()
 
-        val mealName = v.findViewById<TextView>(R.id.mealName)
+        val exerciseName = v.findViewById<TextView>(R.id.exerciseName)
         val calories = v.findViewById<TextView>(R.id.calories)
-        val weight = v.findViewById<TextView>(R.id.weight)
+        val reps = v.findViewById<TextView>(R.id.reps)
 
-        mealName.text = model.mealName
+        exerciseName.text = model.exerciseName
 
         val caloriesColor = ResourcesCompat.getColor(context.resources, R.color.colorCalories, null)
-        label.append("Calories: ")
+        label.append("Burn: ")
         label.append("${model.kcal}", caloriesColor, bold)
+        label.append(" kcal")
         calories.text = label
 
         label = SpannableStringBuilder()
-        label.append("Weight: ")
-        label.append("${model.weight} g", Color.BLACK, bold)
-        weight.text = label
+        label.append("Reps: ")
+        label.append("${model.reps} g", Color.BLACK, bold)
+        reps.text = label
     }
 
     override fun onDataChanged() {
@@ -67,28 +65,16 @@ class AccordionMealAdapter( o : FirebaseListOptions<MealModel>,
     private fun updateTotalCalories(label: TextView) {
 
         context.totalCalories -= totalCalories
-        context.totalCarbs -= totalCarbs
-        context.totalFat -= totalFat
-        context.totalProtein -= totalProtein
         totalCalories = 0
-        totalCarbs = 0
-        totalFat = 0
-        totalProtein = 0
 
         for( i in 0 until count ) {
             val item = getItem(i)
             totalCalories += item.kcal ?: 0
-            totalCarbs += item.carbs ?: 0
-            totalFat += item.fat ?: 0
-            totalProtein += item.protein ?: 0
         }
 
         label.text = totalCalories.toString()
 
         context.totalCalories += totalCalories
-        context.totalCarbs += totalCarbs
-        context.totalFat += totalFat
-        context.totalProtein += totalProtein
         context.notifyDataSetChanged()
     }
 

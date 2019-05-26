@@ -116,6 +116,7 @@ class MealListFragment : Fragment() {
         listView.setOnItemClickListener {_, _, index, _ ->
             val newFragment = AddMealDialogFragment()
             newFragment.show(fragmentManager, "addMeal")
+
         }
 
         listView.adapter = adapter

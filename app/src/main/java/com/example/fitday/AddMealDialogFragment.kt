@@ -4,6 +4,8 @@ import android.app.AlertDialog
 import android.app.Dialog
 import android.os.Bundle
 import android.support.v4.app.DialogFragment
+import android.support.v4.view.ViewPager
+import kotlinx.android.synthetic.main.app_bar_main.*
 
 class AddMealDialogFragment : DialogFragment() {
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
@@ -20,13 +22,13 @@ class AddMealDialogFragment : DialogFragment() {
 
             builder
                 // Add action buttons
-                .setPositiveButton("Dodaj"
+                .setPositiveButton("Add"
                 ) { _, _ ->
-
+                    activity?.findViewById<ViewPager>(R.id.viewPager)?.currentItem = 0
                 }
 
 
-            builder.setTitle("Dodaj własny produkt")
+            builder.setTitle("Add to calendar")
             builder.create()
         } ?: throw IllegalStateException("Activity cannot be null")
     }

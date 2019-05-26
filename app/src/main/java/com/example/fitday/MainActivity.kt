@@ -177,6 +177,9 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 startActivity(intent)
             }
             R.id.nav_signout -> {
+                if(FirebaseAuth.getInstance().currentUser == null) {
+                    Toast.makeText(this, "User already signed out", Toast.LENGTH_SHORT).show()
+                }
                 // Firebase sign out
                 FirebaseAuth.getInstance().signOut()
                 setUserDataOnHeader()
@@ -184,7 +187,11 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             }
 
             R.id.nav_signin -> {
+
                 val intent = Intent(this, SignInActivity::class.java).apply {}
+                if(FirebaseAuth.getInstance().currentUser != null) {
+                    Toast.makeText(this, "User already signed in", Toast.LENGTH_SHORT).show()
+                }
                 startActivity(intent)
             }
         }

@@ -168,6 +168,10 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 var intent = Intent(this,BodyParamsForm::class.java)
                 startActivity(intent)
             }
+            R.id.nav_about -> {
+                var intent = Intent(this, AboutActivity::class.java)
+                startActivity(intent)
+            }
         }
 
         drawer_layout.closeDrawer(GravityCompat.START)
@@ -200,6 +204,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             emailContainer.text = user.email
             //Todo: Proper avatar resize
             Picasso.get().load(user.photoUrl)
+                .centerCrop()
                 .resize(200, 200)
                 .into(avatarContainer)
         }

@@ -115,6 +115,12 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         })
 
         tabs.setupWithViewPager(viewPager)
+
+        Handler().postDelayed(
+            {
+                getQuote()
+
+            }, TIME_OUT.toLong())
     }
     private fun requestPermission() {
         ActivityCompat.requestPermissions(this, arrayOf(
@@ -145,7 +151,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     }
     override fun onStart() {
         super.onStart()
-        getQuote()
     }
 
     override fun onResume() {
@@ -212,6 +217,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 //Write your code if there's no result
             }
         }
+
     }
 
     private fun setUserDataOnHeader(){

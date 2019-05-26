@@ -14,6 +14,9 @@ import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
 import kotlinx.android.synthetic.main.activity_sign_in.*
+import android.support.annotation.NonNull
+import com.google.android.gms.tasks.OnCompleteListener
+
 
 class SignInActivity : AppCompatActivity() {
 
@@ -90,5 +93,6 @@ class SignInActivity : AppCompatActivity() {
             addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
         }
     }
+
 
 }

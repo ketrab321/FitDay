@@ -17,11 +17,14 @@
     <string name="title_activity_gallery">Gallery</string>
     <string name="add_meal_button">Dodaj</string>
     <string name="about_button">About</string>
-    <string name="about_string">FitDay app!
-    Track your calories consumption</string>
-    <string name="about_creators">Created by:
-    Piotr Andrzejewski
-    Sebastian Fojcik
-    Bartosz Stajnowski
-    Mateusz Trzeciak</string>
+    <string name="menu_signout">Sign out</string>
+    <string name="menu_signin">Sign in</string>
+
+    <string-array name="mealTimes">
+        <item>Breakfast</item>
+        <item>Dinner</item>
+        <item>Supper</item>
+        <item>Snacks</item>
+        <item>Other</item>
+    </string-array>
 </resources>

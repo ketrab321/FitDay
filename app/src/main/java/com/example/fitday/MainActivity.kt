@@ -2,7 +2,9 @@ package com.example.fitday
 
 import android.Manifest
 import android.app.Activity
+import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.content.pm.PackageManager
 import android.os.Bundle
 import android.os.Handler
@@ -27,6 +29,9 @@ import com.example.fitday.retrofit.InspirationDTO
 import android.support.v7.app.AppCompatDelegate
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toolbar
+import com.google.android.gms.auth.api.signin.GoogleSignInClient
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 import com.squareup.picasso.Picasso
@@ -44,11 +49,15 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 //Version: 0.1
 const val CHANGE_BODY_PARAMETERS_REQUEST_CODE = 1212
+const val TOGGLE_QUOTE_CODE = 2221
 var PPM = 0.0f
-private const val TIME_OUT = 800
+private const val TIME_OUT = 600
+
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
     val database = FirebaseDatabase.getInstance()
+    lateinit var mGoogleSignInClient: GoogleSignInClient
+    private lateinit var firebaseAuth: FirebaseAuth
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -56,6 +65,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         setSupportActionBar(toolbar)
 
         database.setPersistenceEnabled(true)
+
 
         Handler().postDelayed(
             {
@@ -71,8 +81,9 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 }
             }, TIME_OUT.toLong())
 
+
         val intent = Intent(this, SignInActivity::class.java).apply {}
-        startActivity(intent)
+        startActivityForResult(intent,TOGGLE_QUOTE_CODE)
 
         fab.setOnClickListener { view ->
             Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
@@ -115,6 +126,9 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             }
         })
         tabs.setupWithViewPager(viewPager)
+
+
+
     }
     fun switchPage() {
         val newPage = intent.getIntExtra("page", 0)
@@ -148,9 +162,14 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         }
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
     }
+    lateinit var  sharedPref : SharedPreferences
+
     override fun onStart() {
         super.onStart()
-        getQuote()
+        sharedPref = this.getPreferences(Context.MODE_PRIVATE)
+        PPM = sharedPref.getFloat("PPM",0.0f)
+        Log.d("loadPPM","$PPM")
+
     }
 
     override fun onResume() {
@@ -175,10 +194,28 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             }
             R.id.nav_manage -> {
                 var intent = Intent(this,BodyParamsForm::class.java)
-                startActivity(intent)
+                startActivityForResult(intent, CHANGE_BODY_PARAMETERS_REQUEST_CODE)
             }
             R.id.nav_about -> {
                 var intent = Intent(this, AboutActivity::class.java)
+                startActivity(intent)
+            }
+            R.id.nav_signout -> {
+                if(FirebaseAuth.getInstance().currentUser == null) {
+                    Toast.makeText(this, "User already signed out", Toast.LENGTH_SHORT).show()
+                }
+                // Firebase sign out
+                FirebaseAuth.getInstance().signOut()
+                setUserDataOnHeader()
+               // Toast.makeText(this, "${FirebaseAuth.getInstance().currentUser}", Toast.LENGTH_SHORT).show()
+            }
+
+            R.id.nav_signin -> {
+
+                val intent = Intent(this, SignInActivity::class.java).apply {}
+                if(FirebaseAuth.getInstance().currentUser != null) {
+                    Toast.makeText(this, "User already signed in", Toast.LENGTH_SHORT).show()
+                }
                 startActivity(intent)
             }
         }
@@ -193,26 +230,46 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             if (resultCode == Activity.RESULT_OK) {
                 val resultPPM = data!!.getFloatExtra("PPM",0.0f)
                 PPM = resultPPM
+                sharedPref.edit().putFloat("PPM",PPM).apply()
+                Log.d("savedPPM","$PPM")
                 Toast.makeText(this,"Return $resultPPM",Toast.LENGTH_SHORT).show()
             }
             if (resultCode == Activity.RESULT_CANCELED) {
                 //Write your code if there's no result
             }
         }
+
+        if(requestCode == TOGGLE_QUOTE_CODE)
+        {
+            Handler().postDelayed(
+                {
+                    getQuote()
+                }, TIME_OUT.toLong())
+        }
+
     }
 
     private fun setUserDataOnHeader(){
         val user = FirebaseAuth.getInstance().currentUser
+        val navView = findViewById<NavigationView>(R.id.nav_view)
+        val v = navView.getHeaderView(0)
+        val nameContainer = v.findViewById<TextView>(R.id.userName)
+        val emailContainer = v.findViewById<TextView>(R.id.userEmail)
+        val avatarContainer = v.findViewById<ImageView>(R.id.userAvatar)
         if(user != null){
-            val navView = findViewById<NavigationView>(R.id.nav_view)
-            val v = navView.getHeaderView(0)
-            val nameContainer = v.findViewById<TextView>(R.id.userName)
-            val emailContainer = v.findViewById<TextView>(R.id.userEmail)
-            val avatarContainer = v.findViewById<ImageView>(R.id.userAvatar)
             nameContainer.text = user.displayName.toString()
             emailContainer.text = user.email
             //Todo: Proper avatar resize
             Picasso.get().load(user.photoUrl)
+                .centerCrop()
+                .resize(200, 200)
+                .into(avatarContainer)
+        }
+        else{
+            nameContainer.text = "Your name"
+            emailContainer.text = "youremail@domain.com"
+            //Todo: Proper avatar resize
+            Picasso.get().load(R.drawable.muscle)
                 .centerCrop()
                 .resize(200, 200)
                 .into(avatarContainer)

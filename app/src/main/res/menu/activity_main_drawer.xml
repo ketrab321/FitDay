@@ -16,6 +16,17 @@
                 android:id="@+id/nav_about"
                 android:icon="@drawable/ic_menu_send"
                 android:title="@string/about_button"/>
+
+        <item
+                android:id="@+id/nav_signin"
+                android:icon="@drawable/about_icon_email"
+                android:title="@string/menu_signin"/>
+
+        <item
+                android:id="@+id/nav_signout"
+                android:icon="@drawable/about_icon_email"
+                android:title="@string/menu_signout"/>
     </group>
+
 
 </menu>

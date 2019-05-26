@@ -28,6 +28,8 @@ import android.support.v7.app.AppCompatDelegate
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toolbar
+import com.google.android.gms.auth.api.signin.GoogleSignInClient
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 import com.squareup.picasso.Picasso
@@ -50,6 +52,8 @@ private const val TIME_OUT = 800
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
     val database = FirebaseDatabase.getInstance()
+    lateinit var mGoogleSignInClient: GoogleSignInClient
+    private lateinit var firebaseAuth: FirebaseAuth
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -172,6 +176,17 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 var intent = Intent(this, AboutActivity::class.java)
                 startActivity(intent)
             }
+            R.id.nav_signout -> {
+                // Firebase sign out
+                FirebaseAuth.getInstance().signOut()
+                setUserDataOnHeader()
+               // Toast.makeText(this, "${FirebaseAuth.getInstance().currentUser}", Toast.LENGTH_SHORT).show()
+            }
+
+            R.id.nav_signin -> {
+                val intent = Intent(this, SignInActivity::class.java).apply {}
+                startActivity(intent)
+            }
         }
 
         drawer_layout.closeDrawer(GravityCompat.START)
@@ -194,16 +209,25 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     private fun setUserDataOnHeader(){
         val user = FirebaseAuth.getInstance().currentUser
+        val navView = findViewById<NavigationView>(R.id.nav_view)
+        val v = navView.getHeaderView(0)
+        val nameContainer = v.findViewById<TextView>(R.id.userName)
+        val emailContainer = v.findViewById<TextView>(R.id.userEmail)
+        val avatarContainer = v.findViewById<ImageView>(R.id.userAvatar)
         if(user != null){
-            val navView = findViewById<NavigationView>(R.id.nav_view)
-            val v = navView.getHeaderView(0)
-            val nameContainer = v.findViewById<TextView>(R.id.userName)
-            val emailContainer = v.findViewById<TextView>(R.id.userEmail)
-            val avatarContainer = v.findViewById<ImageView>(R.id.userAvatar)
             nameContainer.text = user.displayName.toString()
             emailContainer.text = user.email
             //Todo: Proper avatar resize
             Picasso.get().load(user.photoUrl)
+                .centerCrop()
+                .resize(200, 200)
+                .into(avatarContainer)
+        }
+        else{
+            nameContainer.text = "Your name"
+            emailContainer.text = "youremail@domain.com"
+            //Todo: Proper avatar resize
+            Picasso.get().load(R.drawable.muscle)
                 .centerCrop()
                 .resize(200, 200)
                 .into(avatarContainer)

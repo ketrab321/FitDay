@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Button
 import android.widget.RadioGroup
+import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -60,6 +61,7 @@ class BodyParamsForm : AppCompatActivity() {
         var radioGroup = findViewById<RadioGroup>(R.id.radioGroup_Sex)
 
         if (user == null) {
+            Toast.makeText(this, "User not signed", Toast.LENGTH_SHORT).show()
             finish()
         }
         setUserValues()

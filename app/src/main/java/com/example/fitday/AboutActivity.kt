@@ -29,8 +29,9 @@ class AboutActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         val aboutPage = AboutPage(this)
-            .setDescription("Track your calories consumption and store your data in database. Napiszcie coś tu bo ja nie mam pomysłu xD")
-            .addGroup("Created by:")
+            .setDescription("Track your calories consumption and store your progress. App created by students form" +
+                    " Faculty of Fundamental Problems of Technology, as Mobile Applications course project led by dr inż. Marcin Zawada")
+            .addGroup("Creators:")
             .addGroup("Piotr Andrzejewski")
             .addGroup("Sebastian Fojcik")
             .addGroup("Bartosz Stajnowski")

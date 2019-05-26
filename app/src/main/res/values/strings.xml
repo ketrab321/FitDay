@@ -24,7 +24,6 @@
         <item>Breakfast</item>
         <item>Dinner</item>
         <item>Supper</item>
-        <item>Snacks</item>
         <item>Other</item>
     </string-array>
 </resources>

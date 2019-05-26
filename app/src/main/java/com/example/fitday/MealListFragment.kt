@@ -104,6 +104,18 @@ class MealListFragment : Fragment() {
                 label.append("Calories in ")
                 label.append("100 g", Color.BLACK, bold)
                 caloriesIn100g.text = label
+
+                v.setOnClickListener {
+                    val newFragment = AddMealDialogFragment()
+                    val args = Bundle()
+                    args.putString("mealName", model.mealName)
+                    args?.putInt("kcal", model.kcal!!)
+                    args?.putInt("carbs", model.carbs!!)
+                    args?.putInt("protein", model.protein!!)
+                    args?.putInt("fat", model.fat!!)
+                    newFragment.arguments = args
+                    newFragment.show(fragmentManager, "addMeal")
+                }
             }
         }
 

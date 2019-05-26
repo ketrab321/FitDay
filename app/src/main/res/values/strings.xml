@@ -20,4 +20,11 @@
     <string name="menu_signout">Sign out</string>
     <string name="menu_signin">Sign in</string>
 
+    <string-array name="mealTimes">
+        <item>Breakfast</item>
+        <item>Dinner</item>
+        <item>Supper</item>
+        <item>Snacks</item>
+        <item>Other</item>
+    </string-array>
 </resources>

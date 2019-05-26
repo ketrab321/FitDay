@@ -8,7 +8,7 @@ import android.widget.EditText
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 
-class NewMealDialogFragment : DialogFragment() {
+class NewExerciseDialogFragment: DialogFragment() {
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         return activity?.let {
@@ -20,31 +20,27 @@ class NewMealDialogFragment : DialogFragment() {
             val currentFirebaseUserId = FirebaseAuth.getInstance().currentUser?.uid
             // Inflate and set the layout for the dialog+s
             // Pass null as the parent view because its going in the dialog layout
-            val inputView = inflater.inflate(R.layout.dialog_new_meal, null)
+            val inputView = inflater.inflate(R.layout.dialog_add_exercise, null)
             builder.setView(inputView)
 
-            val mealName = inputView.findViewById<EditText>(R.id.nameEditText)
+            val exerciseName = inputView.findViewById<EditText>(R.id.nameEditText)
             val kcal = inputView.findViewById<EditText>(R.id.kcalEditText)
-            val protein = inputView.findViewById<EditText>(R.id.proteinEditText)
-            val carbs = inputView.findViewById<EditText>(R.id.carbsEditText)
-            val fat = inputView.findViewById<EditText>(R.id.fatEditText)
+
 
             builder
                 // Add action buttons
                 .setPositiveButton("Dodaj"
                 ) { _, _ ->
-                    val meal = MealModel()
-                    meal.mealName = mealName.text.toString()
-                    meal.kcal = kcal.text.toString().toInt()
-                    meal.protein = protein.text.toString().toInt()
-                    meal.carbs = carbs.text.toString().toInt()
-                    meal.fat = fat.text.toString().toInt()
+                    val exercise = ExerciseModel()
+                    exercise.exerciseName= exerciseName.text.toString()
+                    exercise.kcal = kcal.text.toString().toInt()
 
-                    dbRef.child("meals/$currentFirebaseUserId").push().setValue(meal)
+
+                    dbRef.child("exercises/$currentFirebaseUserId").push().setValue(exercise)
                 }
 
 
-            builder.setTitle("Dodaj własny produkt")
+            builder.setTitle("Add your own exercise")
             builder.create()
         } ?: throw IllegalStateException("Activity cannot be null")
     }

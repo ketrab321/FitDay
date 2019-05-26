@@ -116,22 +116,21 @@ class MealListFragment : Fragment() {
                     newFragment.arguments = args
                     newFragment.show(fragmentManager, "addMeal")
                 }
+
+                v.setOnLongClickListener {
+                    val deleteQuery = getRef(position)
+                    deleteQuery.removeValue()
+                    true
+                }
             }
         }
 
-        listView.setOnItemLongClickListener {_, _, index, _ ->
-            val deleteQuery = adapter.getRef(index)
-            deleteQuery.removeValue()
-            true
-        }
-
         listView.adapter = adapter
-        adapter.startListening()
     }
 
     override fun onStart() {
         super.onStart()
-//        adapter.startListening()
+        adapter.startListening()
     }
 
     override fun onStop() {

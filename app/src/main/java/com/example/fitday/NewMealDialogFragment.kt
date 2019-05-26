@@ -2,15 +2,11 @@ package com.example.fitday
 
 import android.app.AlertDialog
 import android.app.Dialog
-import android.content.Context
-import android.content.DialogInterface
 import android.os.Bundle
 import android.support.v4.app.DialogFragment
-import android.util.Log
 import android.widget.EditText
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
-import kotlinx.android.synthetic.main.dialog_add_meal.*
 
 class NewMealDialogFragment : DialogFragment() {
 
@@ -24,7 +20,7 @@ class NewMealDialogFragment : DialogFragment() {
             val currentFirebaseUserId = FirebaseAuth.getInstance().currentUser?.uid
             // Inflate and set the layout for the dialog+s
             // Pass null as the parent view because its going in the dialog layout
-            val inputView = inflater.inflate(R.layout.dialog_add_meal, null)
+            val inputView = inflater.inflate(R.layout.dialog_new_meal, null)
             builder.setView(inputView)
 
             val mealName = inputView.findViewById<EditText>(R.id.nameEditText)

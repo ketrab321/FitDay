@@ -56,14 +56,6 @@ class PieChartsFragment : Fragment() {
 
     private fun setupAccordion() {
 
-        // Accordion 1 (Exercises)
-        accordion1.title.text = "Ćwiczenia"
-        accordion1.kcal.text = "${-250}"
-        accordion1.addButton.text = "Dodaj ćwiczenie"
-        accordion1.addButton.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_add_button_exercise, 0, 0, 0)
-
-        accordion1.addButton.setOnClickListener{ switchToPage(2) }
-
         fun setupAccordion(accordion: View, title: String, from: String, endpoint: String) {
             accordion.findViewById<TextView>(R.id.title).text = title
             accordion.findViewById<TextView>(R.id.kcal).text = "${0}"
@@ -96,6 +88,22 @@ class PieChartsFragment : Fragment() {
         // Accordion 5
         setupAccordion(accordion5, "Other", "other",
             "daily/$currentFirebaseUserId/$today/other")
+
+        // Accordion 1 (Exercises)
+        accordion1.title.text = "Exercises"
+        accordion1.kcal.text = "${0}"
+        accordion1.addButton.text = "Add exercise"
+        accordion1.addButton.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_add_button_exercise, 0, 0, 0)
+
+        val query = dbRef.child("daily/$currentFirebaseUserId/$today/exercises")
+        val options = FirebaseListOptions.Builder<ExerciseModel>()
+            .setQuery(query, ExerciseModel::class.java)
+            .setLayout(R.layout.accordion_meal_item)
+            .build()
+        val adapter = AccordionExerciseAdapter(options, accordion1, this)
+        accordion1.findViewById<ListView>(R.id.mealsList).adapter = adapter
+        adapter.startListening()
+        accordion1.findViewById<Button>(R.id.addButton).setOnClickListener { switchToPage(2) }
     }
 
     private fun switchToPage(pageId: Int, from: String? = null) {

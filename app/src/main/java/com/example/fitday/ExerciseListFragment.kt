@@ -78,7 +78,7 @@ class ExerciseListFragment : Fragment() {
                 // Calories in 100 g
                 label = SpannableStringBuilder()
                 label.append("Calories burnt in ")
-                label.append("one minute", Color.BLACK, bold)
+                label.append("one rep", Color.BLACK, bold)
                 caloriesIn1minute.text = label
 
                 v.setOnClickListener {

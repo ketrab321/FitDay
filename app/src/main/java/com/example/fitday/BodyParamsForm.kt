@@ -31,16 +31,21 @@ class BodyParamsForm : AppCompatActivity() {
         val postListener = object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 var radioGroup = findViewById<RadioGroup>(R.id.radioGroup_Sex)
-                // Get Post object and use the values to update the UI
-                snp_height.value = dataSnapshot.child("users/$userId/height").getValue().toString().toInt()
-                snp_weight.value = dataSnapshot.child("users/$userId/weight").getValue().toString().toInt()
-                snp_age.value = dataSnapshot.child("users/$userId/age").getValue().toString().toInt()
-                if (dataSnapshot.child("users/$userId/sex").getValue() == true) {radioGroup.male.isChecked = true}
-                if (dataSnapshot.child("users/$userId/sex").getValue() == false) {radioGroup.female.isChecked = true}
+
+                if(dataSnapshot.hasChild("users/$userId")) {
+                    snp_height.value = dataSnapshot.child("users/$userId/height").getValue().toString().toInt()
+                    snp_weight.value = dataSnapshot.child("users/$userId/weight").getValue().toString().toInt()
+                    snp_age.value = dataSnapshot.child("users/$userId/age").getValue().toString().toInt()
+                    if (dataSnapshot.child("users/$userId/sex").getValue() == true) {
+                        radioGroup.male.isChecked = true
+                    }
+                    if (dataSnapshot.child("users/$userId/sex").getValue() == false) {
+                        radioGroup.female.isChecked = true
+                    }
+                }
             }
 
             override fun onCancelled(databaseError: DatabaseError) {
-                // Getting Post failed, log a message
                 Log.w("FitDayError", "loadPost:onCancelled", databaseError.toException())
             }
         }
@@ -57,7 +62,6 @@ class BodyParamsForm : AppCompatActivity() {
         if (user == null) {
             finish()
         }
-
         setUserValues()
 
         button_confirm.setOnClickListener { view ->

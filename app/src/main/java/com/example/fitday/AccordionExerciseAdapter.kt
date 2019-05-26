@@ -52,6 +52,12 @@ class AccordionExerciseAdapter( o : FirebaseListOptions<ExerciseModel>,
         label.append("Reps: ")
         label.append("${model.reps}", Color.BLACK, bold)
         reps.text = label
+
+        v.setOnLongClickListener {
+            val deleteQuery = getRef(position)
+            deleteQuery.removeValue()
+            true
+        }
     }
 
     override fun onDataChanged() {

@@ -73,14 +73,14 @@ class BodyParamsForm : AppCompatActivity() {
             if (radioGroup.checkedRadioButtonId == R.id.male) {database.child("users/$userId/sex").setValue(true)}
             if (radioGroup.checkedRadioButtonId == R.id.female) {database.child("users/$userId/sex").setValue(false)}
 
-                var ppm = dailyCalorieConsumption(
+                var BMR = dailyCalorieConsumption(
                     radioGroup.male.isChecked,
                     snp_height.value.toFloat(),
                     snp_weight.value.toFloat(),
                     snp_age.value.toFloat()
                 )
                 val returnIntent = Intent()
-                returnIntent.putExtra("PPM", ppm)
+                returnIntent.putExtra("BMR", BMR)
                 setResult(Activity.RESULT_OK, returnIntent)
                 finish()
             }

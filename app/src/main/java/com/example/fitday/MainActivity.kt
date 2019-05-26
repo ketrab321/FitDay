@@ -40,6 +40,7 @@ import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
+//test change
 
 //Version: 0.1
 const val CHANGE_BODY_PARAMETERS_REQUEST_CODE = 1212
@@ -165,48 +166,20 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         }
     }
 
-    override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        menuInflater.inflate(R.menu.main, menu)
-        return true
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        when (item.itemId) {
-            R.id.action_settings -> return true
-            R.id.action_change_body_parameters -> {
-                val myintent = Intent(this, BodyParamsForm::class.java )
-                startActivityForResult(myintent, CHANGE_BODY_PARAMETERS_REQUEST_CODE)
-                return true
-            }
-            else -> return super.onOptionsItemSelected(item)
-        }
-    }
-
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         // Handle navigation view item clicks here.
         when (item.itemId) {
-            R.id.nav_camera -> {
-                // Handle the camera action
-            }
             R.id.nav_gallery -> {
                 var intent = Intent(this,Gallery::class.java)
                 startActivity(intent)
             }
-            R.id.nav_slideshow -> {
-
-            }
             R.id.nav_manage -> {
-
+                var intent = Intent(this,BodyParamsForm::class.java)
+                startActivity(intent)
             }
-            R.id.nav_share -> {
-
-            }
-            R.id.nav_send -> {
-
+            R.id.nav_about -> {
+                var intent = Intent(this, AboutActivity::class.java)
+                startActivity(intent)
             }
         }
 
@@ -240,6 +213,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             emailContainer.text = user.email
             //Todo: Proper avatar resize
             Picasso.get().load(user.photoUrl)
+                .centerCrop()
                 .resize(200, 200)
                 .into(avatarContainer)
         }

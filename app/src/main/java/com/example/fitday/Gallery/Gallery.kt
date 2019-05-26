@@ -57,12 +57,13 @@ class Gallery : AppCompatActivity() {
                     loadAllImages()
                 }
             }, TIME_OUT.toLong())
-
+        this.window.setBackgroundDrawableResource(R.drawable.fitness__silownia_007_kobieta__pompki)
         adapter = GalleryAdapter(this, imagePaths)
         gallery.adapter = adapter
         loadAllImages()
 
         adapter.notifyDataSetChanged()
+
 
 
         fab_gallery.setOnClickListener { view ->
@@ -85,6 +86,7 @@ class Gallery : AppCompatActivity() {
                                 this, BuildConfig.APPLICATION_ID + ".fileprovider",it
                             )
                             takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI)
+                            takePictureIntent.putExtra(MediaStore.EXTRA_SCREEN_ORIENTATION,MediaStore.Images.Media.ORIENTATION)
                             startActivityForResult(takePictureIntent, CAPTURE_PHOTO)
 
                         }
@@ -132,11 +134,12 @@ class Gallery : AppCompatActivity() {
             Log.i("mymemory","reading")
 
             for (i in path.list().iterator()) {
-                filePath?.add("" + path.toString() + "/" + i)
-                val x = File(path.toString() + "/" + i)
-                //x.delete()
-
-                         Log.i("mymemory",path.toString()+"/"+i)
+                if(i.contains(".jpg")) {
+                    filePath?.add("" + path.toString() + "/" + i)
+                    //val x = File(path.toString() + "/" + i)
+                    //x.delete()
+                    Log.i("mymemory",path.toString()+"/"+i)
+                }
             }
         }
         else
@@ -147,13 +150,15 @@ class Gallery : AppCompatActivity() {
             Log.i("mymemory","Creating folder")
         }
 
+        //path.delete()
         return filePath!!
     }
     private fun loadAllImages()
     {
         imagePaths.clear()
         getAllShownImagesPath(imagePaths)
-
+        imagePaths.sort()
+        imagePaths.reverse()
     }
     @Throws(IOException::class)
     private fun CreateFile() : File{
@@ -164,8 +169,9 @@ class Gallery : AppCompatActivity() {
         }
 
         var date = Date()
-        val formatter = SimpleDateFormat("MMM_dd_yyyy")
-        val answer: String = formatter.format(date)
+        val formatter = SimpleDateFormat("||MMM_dd_yyyy||")
+        var answer: String = formatter.format(date)
+        Toast.makeText(this,"$answer",Toast.LENGTH_SHORT).show()
         return File.createTempFile(
             "Image-$answer",
             ".jpg",

@@ -6,7 +6,7 @@
 
     <ImageView
             android:layout_width="@dimen/_50sdp"
-            android:layout_height="@dimen/_50sdp" app:srcCompat="@mipmap/ic_launcher_round"
+            android:layout_height="@dimen/_50sdp" app:srcCompat="@mipmap/ic_launcher"
             android:id="@+id/image_gallery"/>
     <TextView
             android:text="Date: "

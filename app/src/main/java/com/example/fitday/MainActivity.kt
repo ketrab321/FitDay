@@ -64,7 +64,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
 
-        database.setPersistenceEnabled(true)
+        //database.setPersistenceEnabled(true)
 
 
         Handler().postDelayed(
@@ -208,6 +208,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 FirebaseAuth.getInstance().signOut()
                 setUserDataOnHeader()
                // Toast.makeText(this, "${FirebaseAuth.getInstance().currentUser}", Toast.LENGTH_SHORT).show()
+                val intent = Intent(this, MainActivity::class.java).apply {}
+                startActivity(intent)
             }
 
             R.id.nav_signin -> {

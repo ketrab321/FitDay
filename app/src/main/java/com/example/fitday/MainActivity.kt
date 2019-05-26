@@ -49,8 +49,10 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 //Version: 0.1
 const val CHANGE_BODY_PARAMETERS_REQUEST_CODE = 1212
+const val TOGGLE_QUOTE_CODE = 2221
 var PPM = 0.0f
-private const val TIME_OUT = 800
+private const val TIME_OUT = 600
+
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
     val database = FirebaseDatabase.getInstance()
@@ -79,8 +81,9 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 }
             }, TIME_OUT.toLong())
 
+
         val intent = Intent(this, SignInActivity::class.java).apply {}
-        startActivity(intent)
+        startActivityForResult(intent,TOGGLE_QUOTE_CODE)
 
         fab.setOnClickListener { view ->
             Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
@@ -120,10 +123,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         tabs.setupWithViewPager(viewPager)
 
 
-        Handler().postDelayed(
-            {
-                getQuote()
-            }, TIME_OUT.toLong())
+
     }
 
     private fun requestPermission() {
@@ -228,6 +228,14 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             if (resultCode == Activity.RESULT_CANCELED) {
                 //Write your code if there's no result
             }
+        }
+
+        if(requestCode == TOGGLE_QUOTE_CODE)
+        {
+            Handler().postDelayed(
+                {
+                    getQuote()
+                }, TIME_OUT.toLong())
         }
 
     }

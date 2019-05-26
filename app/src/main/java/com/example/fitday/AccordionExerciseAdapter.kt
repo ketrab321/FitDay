@@ -14,7 +14,7 @@ import com.firebase.ui.database.FirebaseListAdapter
 import com.firebase.ui.database.FirebaseListOptions
 
 
-class AccordionMealAdapter( o : FirebaseListOptions<ExerciseModel>,
+class AccordionExerciseAdapter( o : FirebaseListOptions<ExerciseModel>,
                             private val accordion: View,
                             private val context: PieChartsFragment)
     : FirebaseListAdapter<ExerciseModel>(o) {
@@ -38,7 +38,7 @@ class AccordionMealAdapter( o : FirebaseListOptions<ExerciseModel>,
 
         val exerciseName = v.findViewById<TextView>(R.id.exerciseName)
         val calories = v.findViewById<TextView>(R.id.calories)
-        val reps = v.findViewById<TextView>(R.id.reps)
+        //val reps = v.findViewById<TextView>(R.id.reps)
 
         exerciseName.text = model.exerciseName
 
@@ -51,7 +51,7 @@ class AccordionMealAdapter( o : FirebaseListOptions<ExerciseModel>,
         label = SpannableStringBuilder()
         label.append("Reps: ")
         label.append("${model.reps} g", Color.BLACK, bold)
-        reps.text = label
+        //reps.text = label
     }
 
     override fun onDataChanged() {

@@ -16,6 +16,9 @@
     <string name="confirm_button">Confirm</string>
     <string name="title_activity_gallery">Gallery</string>
     <string name="add_meal_button">Dodaj</string>
+    <string name="about_button">About</string>
+    <string name="menu_signout">Sign out</string>
+    <string name="menu_signin">Sign in</string>
 
     <string-array name="mealTimes">
         <item>Breakfast</item>

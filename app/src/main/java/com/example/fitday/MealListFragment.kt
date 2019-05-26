@@ -34,7 +34,7 @@ class MealListFragment : Fragment() {
             val newFragment = NewMealDialogFragment()
             newFragment.show(fragmentManager, "newMeal")
         }
-
+        val l = R.mipmap.ic_launcher
         /*
          * Create a DatabaseReference to the data; works with standard DatabaseReference methods
          * like limitToLast() and etc.

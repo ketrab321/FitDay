@@ -3,11 +3,15 @@ package com.example.fitday
 import android.app.AlertDialog
 import android.app.Dialog
 import android.os.Bundle
+import android.os.Handler
 import android.support.v4.app.DialogFragment
 import android.support.v4.view.ViewPager
 import android.util.Log
 import android.widget.EditText
 import android.widget.Spinner
+import android.widget.Toast
+import com.bestsoft32.tt_fancy_gif_dialog_lib.TTFancyGifDialog
+import com.bestsoft32.tt_fancy_gif_dialog_lib.TTFancyGifDialogListener
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 import kotlinx.android.synthetic.main.app_bar_main.*
@@ -49,6 +53,21 @@ class AddExerciseDialogFragment : DialogFragment() {
 
                     dbRef.child("daily/$currentFirebaseUserId/$formatted/exercises").push().setValue(exercise)
                     activity?.findViewById<ViewPager>(R.id.viewPager)?.currentItem = 0
+
+                    Thread.sleep(1000)
+                    var dialog = TTFancyGifDialog.Builder(activity)
+                        .setTitle("GREAT JOB")
+                        .setMessage("Chuck Norris is proud of you")
+                        .setPositiveBtnText("I am THE BEST")
+                        .setPositiveBtnBackground("#000000")
+                        .setGifResource(R.drawable.chuck)      //pass your gif, png or jpg
+                        .isCancellable(true)
+                        .OnPositiveClicked( TTFancyGifDialogListener() {
+                            fun OnClick() {
+                                Toast.makeText(activity,"Ok", Toast.LENGTH_SHORT).show();
+                            }
+                        })
+                    dialog.build()
                 }
 
 

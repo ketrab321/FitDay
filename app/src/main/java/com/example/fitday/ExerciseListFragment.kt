@@ -97,22 +97,7 @@ class ExerciseListFragment : Fragment() {
             deleteQuery.removeValue()
             true
         }
-        exerciseList.setOnItemClickListener{ _,_,_,_->
-            var dialog = TTFancyGifDialog.Builder(activity)
-                .setTitle("GREAT JOB")
-                .setMessage("Chuck Norris is proud of you")
-                .setPositiveBtnText("I am THE BEST")
-                .setPositiveBtnBackground("#000000")
-                .setGifResource(R.drawable.chuck)      //pass your gif, png or jpg
-                .isCancellable(true)
-                .OnPositiveClicked( TTFancyGifDialogListener() {
 
-                    fun OnClick() {
-                        Toast.makeText(activity,"Ok", Toast.LENGTH_SHORT).show();
-                    }
-                })
-                .build()
-        }
         exerciseList.adapter = adapter
     }
 

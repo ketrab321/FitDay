@@ -89,14 +89,14 @@ class ExerciseListFragment : Fragment() {
                     newFragment.arguments = args
                     newFragment.show(fragmentManager, "addExercise")
                 }
+                v.setOnLongClickListener {
+                    val deleteQuery = adapter.getRef(position)
+                    deleteQuery.removeValue()
+                    true
+                }
             }
         }
 
-        exerciseList.setOnItemLongClickListener { _, _, index, _ ->
-            val deleteQuery = adapter.getRef(index)
-            deleteQuery.removeValue()
-            true
-        }
 
         exerciseList.adapter = adapter
     }

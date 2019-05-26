@@ -36,22 +36,22 @@ class AccordionExerciseAdapter( o : FirebaseListOptions<ExerciseModel>,
         val bold = StyleSpan(Typeface.BOLD)
         var label = SpannableStringBuilder()
 
-        val exerciseName = v.findViewById<TextView>(R.id.exerciseName)
+        val exerciseName = v.findViewById<TextView>(R.id.mealName)
         val calories = v.findViewById<TextView>(R.id.calories)
-        //val reps = v.findViewById<TextView>(R.id.reps)
+        val reps = v.findViewById<TextView>(R.id.weight)
 
         exerciseName.text = model.exerciseName
 
-        val caloriesColor = ResourcesCompat.getColor(context.resources, R.color.colorCalories, null)
+        val exerciseColor = ResourcesCompat.getColor(context.resources, R.color.colorPrimaryDark, null)
         label.append("Burn: ")
-        label.append("${model.kcal}", caloriesColor, bold)
+        label.append("${model.kcal}", exerciseColor, bold)
         label.append(" kcal")
         calories.text = label
 
         label = SpannableStringBuilder()
         label.append("Reps: ")
-        label.append("${model.reps} g", Color.BLACK, bold)
-        //reps.text = label
+        label.append("${model.reps}", Color.BLACK, bold)
+        reps.text = label
     }
 
     override fun onDataChanged() {
@@ -69,7 +69,7 @@ class AccordionExerciseAdapter( o : FirebaseListOptions<ExerciseModel>,
 
         for( i in 0 until count ) {
             val item = getItem(i)
-            totalCalories += item.kcal ?: 0
+            totalCalories -= item.kcal ?: 0
         }
 
         label.text = totalCalories.toString()

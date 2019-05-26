@@ -6,5 +6,6 @@ class MealModel {
     var protein: Int? = null
     var carbs: Int? = null
     var fat: Int? = null
+    var weight: Int? = null
 
 }

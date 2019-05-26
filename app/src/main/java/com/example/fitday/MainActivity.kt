@@ -108,22 +108,31 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             override fun onPageScrollStateChanged(p0: Int) {}
             override fun onPageScrolled(p0: Int, p1: Float, p2: Int) {}
             override fun onPageSelected(p0: Int) {
+
+                // Example how to pass data to fragment when swiped on it.
+//                val fragment = pagerAdapter.getItem(viewPager.currentItem)
+//                if (fragment is ExerciseListFragment)
+//                    fragment.boo()
+
                 val bar = findViewById<TabLayout>(R.id.tabs)!!
                 val toolbar = findViewById<android.support.v7.widget.Toolbar>(R.id.toolbar)
                 if (p0 == 2) {
-                    bar.setBackgroundColor(ContextCompat.getColor(baseContext, R.color.secondaryBar))
-                    toolbar.setBackgroundColor(ContextCompat.getColor(baseContext, R.color.secondaryBar))
+                    bar.setBackgroundColor(ContextCompat.getColor(baseContext, R.color.colorPrimaryDark))
+                    toolbar.setBackgroundColor(ContextCompat.getColor(baseContext, R.color.colorPrimaryDark))
                 } else {
-                    bar.setBackgroundColor(ContextCompat.getColor(baseContext, R.color.primaryBar))
-                    toolbar.setBackgroundColor(ContextCompat.getColor(baseContext, R.color.primaryBar))
+                    bar.setBackgroundColor(ContextCompat.getColor(baseContext, R.color.colorPrimary))
+                    toolbar.setBackgroundColor(ContextCompat.getColor(baseContext, R.color.colorPrimary))
                 }
             }
         })
-
         tabs.setupWithViewPager(viewPager)
 
 
 
+    }
+    fun switchPage() {
+        val newPage = intent.getIntExtra("page", 0)
+        tabs.getTabAt(newPage)?.select()
     }
 
     private fun requestPermission() {

@@ -78,8 +78,17 @@ class ExerciseListFragment : Fragment() {
                 // Calories in 100 g
                 label = SpannableStringBuilder()
                 label.append("Calories burnt in ")
-                label.append("one minute", Color.BLACK, bold)
+                label.append("one rep", Color.BLACK, bold)
                 caloriesIn1minute.text = label
+
+                v.setOnClickListener {
+                    val newFragment = AddExerciseDialogFragment()
+                    val args = Bundle()
+                    args.putString("exerciseName", model.exerciseName)
+                    args.putInt("kcal", model.kcal!!)
+                    newFragment.arguments = args
+                    newFragment.show(fragmentManager, "addExercise")
+                }
             }
         }
 
@@ -88,22 +97,7 @@ class ExerciseListFragment : Fragment() {
             deleteQuery.removeValue()
             true
         }
-        exerciseList.setOnItemClickListener{ _,_,_,_->
-            var dialog = TTFancyGifDialog.Builder(activity)
-                .setTitle("GREAT JOB")
-                .setMessage("Chuck Norris is proud of you")
-                .setPositiveBtnText("I am THE BEST")
-                .setPositiveBtnBackground("#000000")
-                .setGifResource(R.drawable.chuck)      //pass your gif, png or jpg
-                .isCancellable(true)
-                .OnPositiveClicked( TTFancyGifDialogListener() {
 
-                    fun OnClick() {
-                        Toast.makeText(activity,"Ok", Toast.LENGTH_SHORT).show();
-                    }
-                })
-                .build()
-        }
         exerciseList.adapter = adapter
     }
 

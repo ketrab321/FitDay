@@ -20,7 +20,7 @@ class NewExerciseDialogFragment: DialogFragment() {
             val currentFirebaseUserId = FirebaseAuth.getInstance().currentUser?.uid
             // Inflate and set the layout for the dialog+s
             // Pass null as the parent view because its going in the dialog layout
-            val inputView = inflater.inflate(R.layout.dialog_add_exercise, null)
+            val inputView = inflater.inflate(R.layout.dialog_new_exercise, null)
             builder.setView(inputView)
 
             val exerciseName = inputView.findViewById<EditText>(R.id.nameEditText)

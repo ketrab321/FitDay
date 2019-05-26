@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#008577</color>
-    <color name="colorPrimaryDark">#00574B</color>
+    <color name="colorPrimary">#259b24</color>
+    <color name="colorPrimaryDark">#e51c23</color>
     <color name="colorAccent">#D81B60</color>
     <color name="colorCalories">#10b515</color>
     <color name="colorCaloriesExercise">#f61420</color>
@@ -12,6 +12,4 @@
     <color name="fontDark">#3E3E3E</color>
     <color name="fontLight">#7C7C7C</color>
     <color name="backgroundGray">#DBDBDB</color>
-    <color name="primaryBar">#259b24</color>
-    <color name="secondaryBar">#e51c23</color>
 </resources>

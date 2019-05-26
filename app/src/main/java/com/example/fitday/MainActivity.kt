@@ -2,7 +2,9 @@ package com.example.fitday
 
 import android.Manifest
 import android.app.Activity
+import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.content.pm.PackageManager
 import android.os.Bundle
 import android.os.Handler
@@ -62,6 +64,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         database.setPersistenceEnabled(true)
 
+
         Handler().postDelayed(
             {
                 // check if user has grannted permission to access device external storage.
@@ -116,12 +119,13 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         tabs.setupWithViewPager(viewPager)
 
+
         Handler().postDelayed(
             {
                 getQuote()
-
             }, TIME_OUT.toLong())
     }
+
     private fun requestPermission() {
         ActivityCompat.requestPermissions(this, arrayOf(
             Manifest.permission.READ_EXTERNAL_STORAGE,
@@ -149,8 +153,14 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         }
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
     }
+    lateinit var  sharedPref : SharedPreferences
+
     override fun onStart() {
         super.onStart()
+        sharedPref = this.getPreferences(Context.MODE_PRIVATE)
+        PPM = sharedPref.getFloat("PPM",0.0f)
+        Log.d("loadPPM","$PPM")
+
     }
 
     override fun onResume() {
@@ -175,7 +185,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             }
             R.id.nav_manage -> {
                 var intent = Intent(this,BodyParamsForm::class.java)
-                startActivity(intent)
+                startActivityForResult(intent, CHANGE_BODY_PARAMETERS_REQUEST_CODE)
             }
             R.id.nav_about -> {
                 var intent = Intent(this, AboutActivity::class.java)
@@ -211,6 +221,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             if (resultCode == Activity.RESULT_OK) {
                 val resultPPM = data!!.getFloatExtra("PPM",0.0f)
                 PPM = resultPPM
+                sharedPref.edit().putFloat("PPM",PPM).apply()
+                Log.d("savedPPM","$PPM")
                 Toast.makeText(this,"Return $resultPPM",Toast.LENGTH_SHORT).show()
             }
             if (resultCode == Activity.RESULT_CANCELED) {

@@ -24,23 +24,26 @@ class BodyParamsForm : AppCompatActivity() {
     var database = FirebaseDatabase.getInstance().reference
 
     private fun dailyCalorieConsumption(sex: Boolean, height: Float, weight: Float, age: Float): Float {
-        if(sex){return  66.47f + (13.7f * weight) + (5.0f * height) - (6.76f * age)}
-        else{return 655.1f + (9.567f * weight) + (1.85f * height) - (4.68f * age)}
+        return if(sex){
+            66.47f + (13.7f * weight) + (5.0f * height) - (6.76f * age)
+        } else{
+            655.1f + (9.567f * weight) + (1.85f * height) - (4.68f * age)
+        }
     }
 
     private fun setUserValues() {
         val postListener = object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
-                var radioGroup = findViewById<RadioGroup>(R.id.radioGroup_Sex)
+                val radioGroup = findViewById<RadioGroup>(R.id.radioGroup_Sex)
 
                 if(dataSnapshot.hasChild("users/$userId")) {
-                    snp_height.value = dataSnapshot.child("users/$userId/height").getValue().toString().toInt()
-                    snp_weight.value = dataSnapshot.child("users/$userId/weight").getValue().toString().toInt()
-                    snp_age.value = dataSnapshot.child("users/$userId/age").getValue().toString().toInt()
-                    if (dataSnapshot.child("users/$userId/sex").getValue() == true) {
+                    snp_height.value = dataSnapshot.child("users/$userId/height").value.toString().toInt()
+                    snp_weight.value = dataSnapshot.child("users/$userId/weight").value.toString().toInt()
+                    snp_age.value = dataSnapshot.child("users/$userId/age").value.toString().toInt()
+                    if (dataSnapshot.child("users/$userId/sex").value == true) {
                         radioGroup.male.isChecked = true
                     }
-                    if (dataSnapshot.child("users/$userId/sex").getValue() == false) {
+                    if (dataSnapshot.child("users/$userId/sex").value == false) {
                         radioGroup.female.isChecked = true
                     }
                 }
@@ -57,32 +60,23 @@ class BodyParamsForm : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_body_params_form)
 
-        var button_confirm = findViewById<Button>(R.id.confirm_body_params)
-        var radioGroup = findViewById<RadioGroup>(R.id.radioGroup_Sex)
+        val buttonConfirm = findViewById<Button>(R.id.confirm_body_params)
+        val radioGroup = findViewById<RadioGroup>(R.id.radioGroup_Sex)
 
         if (user == null) {
             Toast.makeText(this, "User not signed", Toast.LENGTH_SHORT).show()
             finish()
         }
+
         setUserValues()
 
-        button_confirm.setOnClickListener { view ->
+        buttonConfirm.setOnClickListener {
             database.child("users/$userId/height").setValue(snp_height.value.toFloat())
             database.child("users/$userId/weight").setValue(snp_weight.value.toFloat())
             database.child("users/$userId/age").setValue(snp_age.value.toFloat())
             if (radioGroup.checkedRadioButtonId == R.id.male) {database.child("users/$userId/sex").setValue(true)}
             if (radioGroup.checkedRadioButtonId == R.id.female) {database.child("users/$userId/sex").setValue(false)}
-
-                var BMR = dailyCalorieConsumption(
-                    radioGroup.male.isChecked,
-                    snp_height.value.toFloat(),
-                    snp_weight.value.toFloat(),
-                    snp_age.value.toFloat()
-                )
-                val returnIntent = Intent()
-                returnIntent.putExtra("BMR", BMR.toInt())
-                setResult(Activity.RESULT_OK, returnIntent)
-                finish()
+            finish()
             }
         }
     }

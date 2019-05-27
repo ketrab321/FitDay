@@ -41,6 +41,8 @@ class PieChartsFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.pie_charts, container, false)
+        updatePieChart()
+        Log.d("BMR_pie","on creat view")
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -48,8 +50,16 @@ class PieChartsFragment : Fragment() {
         updatePieChart()
         updatePieLabels()
         setupAccordion()
+        Log.d("BMR_pie","on activity created")
+
     }
 
+    override fun onResume() {
+        super.onResume()
+        BMR = activity!!.getPreferences(Context.MODE_PRIVATE).getInt("BMR",1232)
+        notifyDataSetChanged()
+        Log.d("BMR_pie","on resume $BMR")
+    }
     fun notifyDataSetChanged() {
         updatePieLabels()
         updatePieChart()

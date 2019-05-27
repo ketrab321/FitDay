@@ -231,7 +231,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 Toast.makeText(this,"New BMR $resultBMR",Toast.LENGTH_SHORT).show()
                 val pieChartsFragment = pagerAdapter.getItem(0) as PieChartsFragment
                 pieChartsFragment.BMR = BMR
-                pieChartsFragment.updatePieLabels()
+                //pieChartsFragment.updatePieLabels()
             }
             if (resultCode == Activity.RESULT_CANCELED) {
                 //Write your code if there's no result

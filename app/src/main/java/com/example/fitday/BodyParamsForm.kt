@@ -80,7 +80,7 @@ class BodyParamsForm : AppCompatActivity() {
                     snp_age.value.toFloat()
                 )
                 val returnIntent = Intent()
-                returnIntent.putExtra("BMR", BMR)
+                returnIntent.putExtra("BMR", BMR.toInt())
                 setResult(Activity.RESULT_OK, returnIntent)
                 finish()
             }

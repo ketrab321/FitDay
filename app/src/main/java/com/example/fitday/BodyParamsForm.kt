@@ -76,6 +76,17 @@ class BodyParamsForm : AppCompatActivity() {
             database.child("users/$userId/age").setValue(snp_age.value.toFloat())
             if (radioGroup.checkedRadioButtonId == R.id.male) {database.child("users/$userId/sex").setValue(true)}
             if (radioGroup.checkedRadioButtonId == R.id.female) {database.child("users/$userId/sex").setValue(false)}
+
+            val BMR = dailyCalorieConsumption(
+                radioGroup.male.isChecked,
+                snp_height.value.toFloat(),
+                snp_weight.value.toFloat(),
+                snp_age.value.toFloat()
+            )
+
+            val returnIntent = Intent()
+            returnIntent.putExtra("BMR", BMR.toInt())
+            setResult(Activity.RESULT_OK, returnIntent)
             finish()
             }
         }

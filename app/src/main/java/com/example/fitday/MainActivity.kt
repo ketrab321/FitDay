@@ -187,7 +187,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 // Firebase sign out
                 FirebaseAuth.getInstance().signOut()
                 setUserDataOnHeader()
-               // Toast.makeText(this, "${FirebaseAuth.getInstance().currentUser}", Toast.LENGTH_SHORT).show()
                 val intent = Intent(this, MainActivity::class.java).apply {}
                 startActivity(intent)
             }
@@ -241,7 +240,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         if(user != null){
             nameContainer.text = user.displayName.toString()
             emailContainer.text = user.email
-            //Todo: Proper avatar resize
             Picasso.get().load(user.photoUrl)
                 .centerCrop()
                 .resize(200, 200)

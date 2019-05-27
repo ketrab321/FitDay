@@ -55,7 +55,7 @@ private const val TIME_OUT = 600
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
-    val database = FirebaseDatabase.getInstance()
+     val database = FirebaseDatabase.getInstance().getReference()
     lateinit var mGoogleSignInClient: GoogleSignInClient
     private lateinit var firebaseAuth: FirebaseAuth
     private lateinit var pagerAdapter: MainTabsPagerAdapter
@@ -65,8 +65,11 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
 
-        database.setPersistenceEnabled(true)
+        if(database == null) {
+            val mDatabase = FirebaseDatabase.getInstance()
+            mDatabase.setPersistenceEnabled(true)
 
+        }
 
         Handler().postDelayed(
             {
@@ -204,6 +207,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 FirebaseAuth.getInstance().signOut()
                 setUserDataOnHeader()
                // Toast.makeText(this, "${FirebaseAuth.getInstance().currentUser}", Toast.LENGTH_SHORT).show()
+                val intent = Intent(this, MainActivity::class.java).apply {}
+                startActivity(intent)
             }
 
             R.id.nav_signin -> {

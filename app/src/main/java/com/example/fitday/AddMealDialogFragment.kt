@@ -33,6 +33,18 @@ class AddMealDialogFragment : DialogFragment() {
             val mealTime = inputView.findViewById<Spinner>(R.id.mealTime)
             val weightInput = inputView.findViewById<EditText>(R.id.weightInput)
 
+            if(activity?.intent != null)
+            {
+                var selection : Int = 0
+                when(activity?.intent?.getStringExtra("from")) {
+                    "breakfast" -> selection = 0
+                    "dinner" -> selection = 1
+                    "supper" -> selection = 2
+                    "other" -> selection = 3
+                }
+                mealTime.setSelection(selection)
+            }
+
             builder
                 // Add action buttons
                 .setPositiveButton("Add"

@@ -1,12 +1,7 @@
-package com.example.fitday.Gallery
+package com.example.fitday.gallery
 
 import android.app.Activity
-import android.app.Dialog
 import android.content.Context
-import android.graphics.Bitmap
-import android.graphics.BitmapFactory
-import android.graphics.drawable.Drawable
-import android.media.ThumbnailUtils
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,15 +10,8 @@ import android.widget.ImageView
 import android.widget.TextView
 import com.example.fitday.R
 import android.net.Uri
-import android.support.v4.content.FileProvider
-import android.transition.Transition
 import com.bumptech.glide.Glide
-import com.bumptech.glide.request.RequestOptions
-import com.example.fitday.BuildConfig
 import java.io.File
-import java.lang.Math.pow
-import java.net.URI
-import kotlin.concurrent.thread
 
 const val THUMBNAIL_SIZE = 128
 

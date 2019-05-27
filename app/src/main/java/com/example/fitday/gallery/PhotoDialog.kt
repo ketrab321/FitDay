@@ -1,17 +1,14 @@
-package com.example.fitday.Gallery
+package com.example.fitday.gallery
 
 import android.app.Dialog
 import android.content.Context
-import android.graphics.BitmapFactory
 import android.net.Uri
 import android.os.Bundle
 import android.view.View
 import android.view.Window
 import com.bumptech.glide.Glide
 import com.example.fitday.R
-import com.felipecsl.gifimageview.library.GifImageView
 import kotlinx.android.synthetic.main.photo_dialog.*
-import pl.droidsonroids.gif.GifDecoder
 import java.io.File
 
 class PhotoDialog(context : Context, _imgFile: File,_date : String ) : Dialog(context),View.OnClickListener{

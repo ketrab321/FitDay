@@ -11,20 +11,18 @@ import mehdi.sakout.aboutpage.Element
 
 class AboutActivity : AppCompatActivity() {
 
-
-
-
-    internal val copyRightsElement: Element
+    private val copyRightsElement: Element
         get() {
             val copyRightsElement = Element()
             val copyrights = String.format("\u00a9 WPPT, Wrocław 2019", Calendar.getInstance().get(Calendar.YEAR))
-            copyRightsElement.setTitle(copyrights)
+            copyRightsElement.title = copyrights
             copyRightsElement.iconNightTint = android.R.color.white
             copyRightsElement.gravity = Gravity.CENTER
             copyRightsElement.onClickListener =
                 View.OnClickListener { Toast.makeText(this@AboutActivity, copyrights, Toast.LENGTH_SHORT).show() }
             return copyRightsElement
         }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 

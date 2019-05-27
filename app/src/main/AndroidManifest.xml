@@ -23,7 +23,7 @@
                   android:screenOrientation="portrait">
         </activity>
         <activity
-                android:name=".Gallery.Gallery"
+                android:name=".gallery.Gallery"
                 android:label="@string/title_activity_gallery"
                 android:screenOrientation="portrait"
                 android:theme="@style/AppTheme.NoActionBar">

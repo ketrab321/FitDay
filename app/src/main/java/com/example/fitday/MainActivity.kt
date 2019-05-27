@@ -25,9 +25,13 @@ import android.widget.TextView
 import android.widget.Toast
 import com.bestsoft32.tt_fancy_gif_dialog_lib.TTFancyGifDialog
 import com.bestsoft32.tt_fancy_gif_dialog_lib.TTFancyGifDialogListener
-import com.example.fitday.Gallery.Gallery
+import com.example.fitday.gallery.Gallery
 import com.example.fitday.retrofit.InspirationAPI
 import com.example.fitday.retrofit.InspirationDTO
+import android.support.v7.app.AppCompatDelegate
+import android.widget.ImageView
+import android.widget.TextView
+import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 import com.squareup.picasso.Picasso

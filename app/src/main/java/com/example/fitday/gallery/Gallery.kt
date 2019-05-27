@@ -1,37 +1,29 @@
-package com.example.fitday.Gallery
+package com.example.fitday.gallery
 
 import android.Manifest
 import android.app.Activity
 import android.content.Intent
 import android.content.pm.PackageManager
-import android.graphics.Bitmap
-import android.graphics.BitmapFactory
 import android.net.Uri
 import android.os.Bundle
 import android.os.Environment
 import android.os.Handler
 import android.provider.MediaStore
-import android.support.design.widget.Snackbar
 import android.support.v4.app.ActivityCompat
 import android.support.v4.content.ContextCompat
 import android.support.v4.content.FileProvider
-import android.support.v7.app.AppCompatActivity;
+import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import android.widget.Toast
 import com.example.fitday.BuildConfig
 import com.example.fitday.R
-
 import kotlinx.android.synthetic.main.activity_gallery.*
 import kotlinx.android.synthetic.main.content_gallery.*
 import java.io.File
-import java.io.FileOutputStream
 import java.io.IOException
 import java.text.SimpleDateFormat
-import java.time.LocalDate
-import java.time.LocalDateTime
 import java.util.*
 import kotlin.collections.ArrayList
-import kotlin.random.Random
 
 var imagePaths : ArrayList<String> =  ArrayList()
 
@@ -64,32 +56,26 @@ class Gallery : AppCompatActivity() {
 
         adapter.notifyDataSetChanged()
 
-
-
-        fab_gallery.setOnClickListener { view ->
+        fab_gallery.setOnClickListener { _ ->
             Intent(MediaStore.ACTION_IMAGE_CAPTURE).also { takePictureIntent ->
                 // Ensure that there's a camera activity to handle the intent
                 takePictureIntent.resolveActivity(packageManager)?.also {
                     // Create the File where the photo should go
                     val photoFile: File? = try {
-                        CreateFile()
+                        createFile()
                     } catch (ex: IOException) {
                         // Error occurred while creating the File
                         null
                     }
 
-                    if(photoFile != null) {
-                        // Continue only if the File was successfully created
-                        photoFile?.also {
-                            Toast.makeText(this,applicationContext.packageName + ".Gallery.MyFileProvider",Toast.LENGTH_SHORT).show()
-                                                        val photoURI: Uri = FileProvider.getUriForFile(
-                                this, BuildConfig.APPLICATION_ID + ".fileprovider",it
-                            )
-                            takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI)
-                            takePictureIntent.putExtra(MediaStore.EXTRA_SCREEN_ORIENTATION,MediaStore.Images.Media.ORIENTATION)
-                            startActivityForResult(takePictureIntent, CAPTURE_PHOTO)
+                    photoFile?.also {
+                        val photoURI: Uri = FileProvider.getUriForFile(
+                            this, BuildConfig.APPLICATION_ID + ".fileprovider",it
+                        )
+                        takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI)
+                        takePictureIntent.putExtra(MediaStore.EXTRA_SCREEN_ORIENTATION,MediaStore.Images.Media.ORIENTATION)
+                        startActivityForResult(takePictureIntent, CAPTURE_PHOTO)
 
-                        }
                     }
                 }
             }
@@ -97,13 +83,13 @@ class Gallery : AppCompatActivity() {
         }
     }
 
-    lateinit var  adapter : GalleryAdapter
+    private lateinit var  adapter : GalleryAdapter
 
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
         when (requestCode) {
             6036 -> {
-                if (grantResults.size > 0) {
-                    var permissionGranted = grantResults[0] == PackageManager.PERMISSION_GRANTED
+                if (grantResults.isNotEmpty()) {
+                    val permissionGranted = grantResults[0] == PackageManager.PERMISSION_GRANTED
                     if (permissionGranted) {
 
 
@@ -135,23 +121,23 @@ class Gallery : AppCompatActivity() {
 
             for (i in path.list().iterator()) {
                 if(i.contains(".jpg")) {
-                    filePath?.add("" + path.toString() + "/" + i)
+                    filePath.add("$path/$i")
                     //val x = File(path.toString() + "/" + i)
                     //x.delete()
-                    Log.i("mymemory",path.toString()+"/"+i)
+                    Log.i("mymemory","$path/$i")
                 }
             }
         }
         else
         {
             if(!path.mkdir()){
-                Toast.makeText(this, IMAGE_FOLDER+" can't be created.", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "$IMAGE_FOLDER can't be created.", Toast.LENGTH_SHORT).show()
             }
             Log.i("mymemory","Creating folder")
         }
 
         //path.delete()
-        return filePath!!
+        return filePath
     }
     private fun loadAllImages()
     {
@@ -161,17 +147,16 @@ class Gallery : AppCompatActivity() {
         imagePaths.reverse()
     }
     @Throws(IOException::class)
-    private fun CreateFile() : File{
+    private fun createFile() : File{
 
         val myDir = File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES).path+"/"+ IMAGE_FOLDER)
         if (!myDir.exists()) {
             myDir.mkdirs()
         }
 
-        var date = Date()
-        val formatter = SimpleDateFormat("||MMM_dd_yyyy||")
-        var answer: String = formatter.format(date)
-        Toast.makeText(this,"$answer",Toast.LENGTH_SHORT).show()
+        val date = Date()
+        val formatter = SimpleDateFormat("||MMM_dd_yyyy||",Locale.US)
+        val answer: String = formatter.format(date)
         return File.createTempFile(
             "Image-$answer",
             ".jpg",

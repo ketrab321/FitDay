@@ -19,7 +19,7 @@ class AccordionExerciseAdapter( o : FirebaseListOptions<ExerciseModel>,
                             private val context: PieChartsFragment)
     : FirebaseListAdapter<ExerciseModel>(o) {
 
-    var totalCalories = 0
+    private var totalCalories = 0
 
     override fun populateView(v: View, model: ExerciseModel, position: Int) {
 

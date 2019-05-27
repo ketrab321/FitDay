@@ -19,10 +19,10 @@ class AccordionMealAdapter( o : FirebaseListOptions<MealModel>,
                             private val context: PieChartsFragment)
     : FirebaseListAdapter<MealModel>(o) {
 
-    var totalCalories = 0
-    var totalProtein = 0
-    var totalCarbs = 0
-    var totalFat = 0
+    private var totalCalories = 0
+    private var totalProtein = 0
+    private var totalCarbs = 0
+    private var totalFat = 0
 
     override fun populateView(v: View, model: MealModel, position: Int) {
 

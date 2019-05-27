@@ -4,7 +4,6 @@ import android.graphics.Color
 import android.graphics.Typeface
 import android.os.Bundle
 import android.support.v4.app.Fragment
-import android.support.v4.content.res.ResourcesCompat
 import android.text.Spannable
 import android.text.SpannableStringBuilder
 import android.text.style.ForegroundColorSpan
@@ -13,9 +12,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import android.widget.Toast
-import com.bestsoft32.tt_fancy_gif_dialog_lib.TTFancyGifDialog
-import com.bestsoft32.tt_fancy_gif_dialog_lib.TTFancyGifDialogListener
 import com.firebase.ui.database.FirebaseListAdapter
 import com.firebase.ui.database.FirebaseListOptions
 import com.google.firebase.auth.FirebaseAuth
@@ -23,7 +19,7 @@ import com.google.firebase.database.FirebaseDatabase
 import kotlinx.android.synthetic.main.exercise_list.*
 
 class ExerciseListFragment : Fragment() {
-    lateinit var adapter: FirebaseListAdapter<ExerciseModel>
+    private lateinit var adapter: FirebaseListAdapter<ExerciseModel>
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.exercise_list, container, false)
     }
@@ -36,7 +32,7 @@ class ExerciseListFragment : Fragment() {
             val newFragment = NewExerciseDialogFragment()
             newFragment.show(fragmentManager, "newExercise")
         }
-        val l = R.mipmap.ic_launcher
+
         /*
          * Create a DatabaseReference to the data; works with standard DatabaseReference methods
          * like limitToLast() and etc.
@@ -67,7 +63,7 @@ class ExerciseListFragment : Fragment() {
                 val calories = v.findViewById<TextView>(R.id.caloriesExercise)
                 val caloriesIn1minute = v.findViewById<TextView>(R.id.calories_in_one_minute)
                 val bold = StyleSpan(Typeface.BOLD)
-                var label = SpannableStringBuilder()
+                val label = SpannableStringBuilder()
 
                 // Exercise name
                 exerciseName.text = model.exerciseName
@@ -76,7 +72,6 @@ class ExerciseListFragment : Fragment() {
 
 
                 // Calories in 100 g
-                label = SpannableStringBuilder()
                 label.append("Calories burnt in ")
                 label.append("one rep", Color.BLACK, bold)
                 caloriesIn1minute.text = label

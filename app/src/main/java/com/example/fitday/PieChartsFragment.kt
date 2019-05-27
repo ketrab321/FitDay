@@ -1,7 +1,6 @@
 package com.example.fitday
 
 import android.content.Context
-import android.database.DataSetObserver
 import android.graphics.Color
 import android.graphics.Typeface
 import android.os.Bundle
@@ -41,8 +40,6 @@ class PieChartsFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.pie_charts, container, false)
-        updatePieChart()
-        Log.d("BMR_pie","on creat view")
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -124,14 +121,7 @@ class PieChartsFragment : Fragment() {
         mainActivity.switchPage()
     }
 
-    private fun onAddMealClicked(view: View) {
-        val mealsList = view.rootView.findViewById<ListView>(R.id.mealsList)
-        val adapter = mealsList.adapter as AccordionMealAdapter
-
-        //adapter.addMeal(MealModel("Łzy studentów", 0, 10, 5, 2))
-    }
-
-    fun updatePieLabels() {
+    private fun updatePieLabels() {
         BMRLabel.text = "${totalCalories*100/BMR}"
 
         fun SpannableStringBuilder.append(str: String, color: Int, style: Any?) {
@@ -145,7 +135,6 @@ class PieChartsFragment : Fragment() {
         }
         val bold = StyleSpan(Typeface.BOLD)
         var label = SpannableStringBuilder()
-        val ex = Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
         val totalNutrients = totalCarbs + totalFat + totalProtein
 
         val caloriesColor = ResourcesCompat.getColor(resources, R.color.colorCalories, null)

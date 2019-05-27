@@ -9,19 +9,18 @@ import android.text.Spannable
 import android.text.SpannableStringBuilder
 import android.text.style.ForegroundColorSpan
 import android.text.style.StyleSpan
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.firebase.ui.database.FirebaseListAdapter
-import com.google.firebase.database.FirebaseDatabase
-import kotlinx.android.synthetic.main.meal_list.*
 import android.widget.TextView
+import com.firebase.ui.database.FirebaseListAdapter
 import com.firebase.ui.database.FirebaseListOptions
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.FirebaseDatabase
+import kotlinx.android.synthetic.main.meal_list.*
 
 class MealListFragment : Fragment() {
-    lateinit var adapter: FirebaseListAdapter<MealModel>
+    private lateinit var adapter: FirebaseListAdapter<MealModel>
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.meal_list, container, false)
     }
@@ -34,7 +33,6 @@ class MealListFragment : Fragment() {
             val newFragment = NewMealDialogFragment()
             newFragment.show(fragmentManager, "newMeal")
         }
-        val l = R.mipmap.ic_launcher
         /*
          * Create a DatabaseReference to the data; works with standard DatabaseReference methods
          * like limitToLast() and etc.
@@ -77,7 +75,6 @@ class MealListFragment : Fragment() {
 
                 // Protein
                 val proteinColor = ResourcesCompat.getColor(resources, R.color.colorProtein, null)
-                label = SpannableStringBuilder()
                 label.append("Protein: ")
                 label.append("${model.protein}", proteinColor, bold)
                 label.append(" g")
@@ -109,10 +106,10 @@ class MealListFragment : Fragment() {
                     val newFragment = AddMealDialogFragment()
                     val args = Bundle()
                     args.putString("mealName", model.mealName)
-                    args?.putInt("kcal", model.kcal!!)
-                    args?.putInt("carbs", model.carbs!!)
-                    args?.putInt("protein", model.protein!!)
-                    args?.putInt("fat", model.fat!!)
+                    args.putInt("kcal", model.kcal!!)
+                    args.putInt("carbs", model.carbs!!)
+                    args.putInt("protein", model.protein!!)
+                    args.putInt("fat", model.fat!!)
                     newFragment.arguments = args
                     newFragment.show(fragmentManager, "addMeal")
                 }

@@ -8,8 +8,8 @@ import android.content.SharedPreferences
 import android.content.pm.PackageManager
 import android.os.Bundle
 import android.os.Handler
-import android.support.design.widget.Snackbar
 import android.support.design.widget.NavigationView
+import android.support.design.widget.Snackbar
 import android.support.design.widget.TabLayout
 import android.support.v4.app.ActivityCompat
 import android.support.v4.content.ContextCompat
@@ -17,21 +17,17 @@ import android.support.v4.view.GravityCompat
 import android.support.v4.view.ViewPager
 import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.app.AppCompatActivity
+import android.support.v7.app.AppCompatDelegate
 import android.util.Log
-import android.view.Menu
 import android.view.MenuItem
+import android.widget.ImageView
+import android.widget.TextView
 import android.widget.Toast
 import com.bestsoft32.tt_fancy_gif_dialog_lib.TTFancyGifDialog
 import com.bestsoft32.tt_fancy_gif_dialog_lib.TTFancyGifDialogListener
 import com.example.fitday.Gallery.Gallery
 import com.example.fitday.retrofit.InspirationAPI
 import com.example.fitday.retrofit.InspirationDTO
-import android.support.v7.app.AppCompatDelegate
-import android.widget.ImageView
-import android.widget.TextView
-import android.widget.Toolbar
-import com.google.android.gms.auth.api.signin.GoogleSignInClient
-import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 import com.squareup.picasso.Picasso
@@ -55,21 +51,13 @@ private const val TIME_OUT = 600
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
-     val database = FirebaseDatabase.getInstance().getReference()
-    lateinit var mGoogleSignInClient: GoogleSignInClient
-    private lateinit var firebaseAuth: FirebaseAuth
+     val database = FirebaseDatabase.getInstance().reference
     private lateinit var pagerAdapter: MainTabsPagerAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
-
-        if(database == null) {
-            val mDatabase = FirebaseDatabase.getInstance()
-            mDatabase.setPersistenceEnabled(true)
-
-        }
 
         Handler().postDelayed(
             {
@@ -154,8 +142,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
         when (requestCode) {
             6666 -> {
-                if (grantResults.size > 0) {
-                    var permissionGranted = grantResults[0] == PackageManager.PERMISSION_GRANTED
+                if (grantResults.isNotEmpty()) {
+                    val permissionGranted = grantResults[0] == PackageManager.PERMISSION_GRANTED
                     if (!permissionGranted) {
                         Toast.makeText(this, "Permission Denied! Cannot load images.", Toast.LENGTH_SHORT).show()
                     }
@@ -164,7 +152,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         }
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
     }
-    lateinit var  sharedPref : SharedPreferences
+    private lateinit var  sharedPref : SharedPreferences
 
     override fun onStart() {
         super.onStart()
@@ -188,15 +176,15 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         // Handle navigation view item clicks here.
         when (item.itemId) {
             R.id.nav_gallery -> {
-                var intent = Intent(this,Gallery::class.java)
+                val intent = Intent(this,Gallery::class.java)
                 startActivity(intent)
             }
             R.id.nav_manage -> {
-                var intent = Intent(this,BodyParamsForm::class.java)
+                val intent = Intent(this,BodyParamsForm::class.java)
                 startActivityForResult(intent, CHANGE_BODY_PARAMETERS_REQUEST_CODE)
             }
             R.id.nav_about -> {
-                var intent = Intent(this, AboutActivity::class.java)
+                val intent = Intent(this, AboutActivity::class.java)
                 startActivity(intent)
             }
             R.id.nav_signout -> {
@@ -231,15 +219,12 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             if (resultCode == Activity.RESULT_OK) {
                 val resultBMR = data!!.getIntExtra("BMR",0)
                 BMR = resultBMR
-                sharedPref.edit().putInt("BMR",BMR.toInt()).apply()
+                sharedPref.edit().putInt("BMR", BMR).apply()
                 Log.d("savedBMR","$BMR")
                 Toast.makeText(this,"New BMR $resultBMR",Toast.LENGTH_SHORT).show()
                 val pieChartsFragment = pagerAdapter.getItem(0) as PieChartsFragment
                 pieChartsFragment.BMR = BMR
                 //pieChartsFragment.updatePieLabels()
-            }
-            if (resultCode == Activity.RESULT_CANCELED) {
-                //Write your code if there's no result
             }
         }
 
@@ -272,7 +257,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         else{
             nameContainer.text = "Your name"
             emailContainer.text = "youremail@domain.com"
-            //Todo: Proper avatar resize
             Picasso.get().load(R.drawable.muscle)
                 .centerCrop()
                 .resize(200, 200)
@@ -283,11 +267,11 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     private fun getQuote()
     {
-        var interceptor = HttpLoggingInterceptor();
-        interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
-        var client =  OkHttpClient.Builder()
+        val interceptor = HttpLoggingInterceptor()
+        interceptor.level = HttpLoggingInterceptor.Level.BODY
+        val client =  OkHttpClient.Builder()
             .addInterceptor(interceptor)
-            .build();
+            .build()
 
         val retrofit = Retrofit.Builder()
             .baseUrl("http://quotes.rest")
@@ -297,32 +281,26 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         val inspiration = retrofit.create(InspirationAPI::class.java)
 
-        var call = inspiration.getQuote()
+        val call = inspiration.getQuote()
 
         call.enqueue(object : Callback<InspirationDTO> {
             override fun onFailure(call: Call<InspirationDTO>, t: Throwable) {
-                Log.d("inspiration", "ups ${call} $t")
+                Log.d("inspiration", "ups $call $t")
                 defaultQuote()
             }
 
             override fun onResponse(call: Call<InspirationDTO>, response: Response<InspirationDTO>) {
                 if(response.isSuccessful) {
                     Log.i("retrofit","success")
-                    val mybody = response.body()
-                    var quote = mybody!!.contents.quotes[0].quote
-                    var dialog = TTFancyGifDialog.Builder(this@MainActivity)
+                    val myBody = response.body()
+                    val quote = myBody!!.contents.quotes[0].quote
+                    val dialog = TTFancyGifDialog.Builder(this@MainActivity)
                         .setTitle("Your daily quote")
-                        .setMessage("$quote")
+                        .setMessage(quote)
                         .setPositiveBtnText("Lets go")
                         .setPositiveBtnBackground("#22b573")
                         .setGifResource(R.drawable.strength)      //pass your gif, png or jpg
                         .isCancellable(true)
-                        .OnPositiveClicked(TTFancyGifDialogListener() {
-
-                            fun OnClick() {
-                                Toast.makeText(this@MainActivity, "Ok", Toast.LENGTH_SHORT).show();
-                            }
-                        })
                     dialog.build()
                 }
                 else
@@ -334,19 +312,13 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     }
 
     private fun defaultQuote(){
-        var dialog = TTFancyGifDialog.Builder(this@MainActivity)
+        TTFancyGifDialog.Builder(this@MainActivity)
             .setTitle("Your daily quote")
             .setMessage("Never give up and keep moving forward!!!")
             .setPositiveBtnText("Lets go")
             .setPositiveBtnBackground("#22b573")
             .setGifResource(R.drawable.strength)      //pass your gif, png or jpg
             .isCancellable(true)
-            .OnPositiveClicked( TTFancyGifDialogListener() {
-
-                fun OnClick() {
-                    Toast.makeText(this@MainActivity,"Ok",Toast.LENGTH_SHORT).show();
-                }
-            })
             .build()
     }
 }

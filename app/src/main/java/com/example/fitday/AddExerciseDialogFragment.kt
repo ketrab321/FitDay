@@ -1,25 +1,21 @@
 package com.example.fitday
 
+import android.annotation.SuppressLint
 import android.app.AlertDialog
 import android.app.Dialog
 import android.os.Bundle
-import android.os.Handler
 import android.support.v4.app.DialogFragment
 import android.support.v4.view.ViewPager
 import android.util.Log
 import android.widget.EditText
-import android.widget.Spinner
-import android.widget.Toast
 import com.bestsoft32.tt_fancy_gif_dialog_lib.TTFancyGifDialog
-import com.bestsoft32.tt_fancy_gif_dialog_lib.TTFancyGifDialogListener
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
-import kotlinx.android.synthetic.main.app_bar_main.*
-import kotlinx.android.synthetic.main.dialog_add_meal.*
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 
 class AddExerciseDialogFragment : DialogFragment() {
+    @SuppressLint("InflateParams")
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         return activity?.let {
             val builder = AlertDialog.Builder(it)
@@ -55,18 +51,13 @@ class AddExerciseDialogFragment : DialogFragment() {
                     activity?.findViewById<ViewPager>(R.id.viewPager)?.currentItem = 0
 
                     Thread.sleep(1000)
-                    var dialog = TTFancyGifDialog.Builder(activity)
+                    val dialog = TTFancyGifDialog.Builder(activity)
                         .setTitle("GREAT JOB")
                         .setMessage("Chuck Norris is proud of you")
                         .setPositiveBtnText("I am THE BEST")
                         .setPositiveBtnBackground("#000000")
                         .setGifResource(R.drawable.chuck)      //pass your gif, png or jpg
                         .isCancellable(true)
-                        .OnPositiveClicked( TTFancyGifDialogListener() {
-                            fun OnClick() {
-                                Toast.makeText(activity,"Ok", Toast.LENGTH_SHORT).show();
-                            }
-                        })
                     dialog.build()
                 }
 

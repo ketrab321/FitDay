@@ -1,5 +1,6 @@
 package com.example.fitday
 
+import android.annotation.SuppressLint
 import android.app.AlertDialog
 import android.app.Dialog
 import android.os.Bundle
@@ -10,12 +11,11 @@ import android.widget.EditText
 import android.widget.Spinner
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
-import kotlinx.android.synthetic.main.app_bar_main.*
-import kotlinx.android.synthetic.main.dialog_add_meal.*
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 
 class AddMealDialogFragment : DialogFragment() {
+    @SuppressLint("InflateParams")
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         return activity?.let {
             val builder = AlertDialog.Builder(it)
@@ -35,7 +35,7 @@ class AddMealDialogFragment : DialogFragment() {
 
             if(activity?.intent != null)
             {
-                var selection : Int = 0
+                var selection = 0
                 when(activity?.intent?.getStringExtra("from")) {
                     "breakfast" -> selection = 0
                     "dinner" -> selection = 1

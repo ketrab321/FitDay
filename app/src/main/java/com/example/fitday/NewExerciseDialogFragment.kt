@@ -1,5 +1,6 @@
 package com.example.fitday
 
+import android.annotation.SuppressLint
 import android.app.AlertDialog
 import android.app.Dialog
 import android.os.Bundle
@@ -10,6 +11,7 @@ import com.google.firebase.database.FirebaseDatabase
 
 class NewExerciseDialogFragment: DialogFragment() {
 
+    @SuppressLint("InflateParams")
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         return activity?.let {
             val builder = AlertDialog.Builder(it)
